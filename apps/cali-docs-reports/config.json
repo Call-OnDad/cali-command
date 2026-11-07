@@ -1,0 +1,21 @@
+{
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8798
+  },
+  "agent": {
+    "name": "Lex",
+    "role": "Corporate Legal & Document Operations Specialist",
+    "generation": 2,
+    "philosophy": "Precision recordkeeping. Complete audit readiness and instant knowledge retrieval."
+  },
+  "onlyoffice": {
+    "url": "https://office.call-on.media",
+    "container": "CT110"
+  },
+  "companies_house": {
+    "company_number": "17373615",
+    "api_key": ""
+  },
+  "docs_root": "D:/The Cali Project/docs"
+}

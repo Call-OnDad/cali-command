@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cali Video & Media Studio Pro</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="cali-sidekick.css">
+</head>
+<body>
+
+  <!-- 1. TOP APPLICATION BAR -->
+  <header class="top-bar">
+    <div class="brand-section">
+      <div class="brand-icon">C</div>
+      <input type="text" id="project-title" class="project-title-input" value="Cali Operations Showcase" title="Click to rename project">
+      <span style="font-size: 11px; padding: 2px 6px; background: rgba(56,189,248,0.15); color: var(--cyan); border-radius: 4px; border: 1px solid var(--border);">PRO NLE</span>
+    </div>
+
+    <!-- Timecode & Playhead readout -->
+    <div class="timecode-display" id="timecode-readout">00:00:00:00</div>
+
+    <!-- Actions -->
+    <div class="top-actions">
+      <a href="/" onclick="if(window.parent && window.parent.closeAppViewer){window.parent.closeAppViewer();return false;}" class="btn btn-secondary" style="text-decoration: none; color: var(--cyan); margin-right: 4px;">
+        &larr; Central Hub (:8800)
+      </a>
+      <select id="canvas-aspect" style="width: 140px; margin-bottom: 0; padding: 5px 8px; font-size: 12px;" onchange="onAspectChange()">
+        <option value="9:16">9:16 (Shorts/TikTok)</option>
+        <option value="16:9">16:9 (YouTube HD)</option>
+      </select>
+      <button class="btn btn-secondary" onclick="saveProject()">💾 Save Spec</button>
+      <button class="btn btn-colab" onclick="exportToColab()">⚡ Colab GPU Dispatch</button>
+      <button class="btn btn-primary" onclick="startRender()">🚀 Render (Fast CPU)</button>
+    </div>
+  </header>
+
+  <!-- 2. MAIN 3-COLUMN WORKSPACE -->
+  <div class="workspace-middle">
+
+    <!-- LEFT: SCRIPT DOCUMENT & MEDIA BIN -->
+    <aside class="panel-left">
+      <div class="panel-tabs">
+        <button class="panel-tab-btn active" onclick="switchLeftTab('pane-script')">📝 Script</button>
+        <button class="panel-tab-btn" onclick="switchLeftTab('pane-voices')">🎧 Voice Previews</button>
+        <button class="panel-tab-btn" onclick="switchLeftTab('pane-assets')">🖼️ Cast</button>
+        <button class="panel-tab-btn" onclick="switchLeftTab('pane-faceless')">🔲 Faceless Shorts</button>
+        <button class="panel-tab-btn" onclick="switchLeftTab('pane-packs')">📦 Packs</button>
+        <button class="panel-tab-btn" onclick="switchLeftTab('pane-auto')">⚡ Auto-Video</button>
+      </div>
+
+      <!-- Tab 1: Script Document Editor -->
+      <div id="pane-script" class="tab-pane active">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <span style="font-size: 11px; color: var(--text-dim); text-transform: uppercase; font-weight: 700;">Story Sequence</span>
+          <button class="btn btn-secondary" style="padding: 3px 8px; font-size: 11px;" onclick="addScene()">+ Add Scene</button>
+        </div>
+        <div id="script-blocks-container">
+          <!-- Dynamically populated sentence blocks -->
+        </div>
+      </div>
+
+      <!-- Tab 1b: Voice Auditions & Clone Vault -->
+      <div id="pane-voices" class="tab-pane">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <span style="font-size: 11px; color: var(--text-dim); text-transform: uppercase; font-weight: 700;">Locked Canonical Voices (7/7)</span>
+          <select id="voice-filter" style="width: 140px; margin-bottom: 0; font-size: 11px; padding: 2px 4px;" onchange="filterAuditions()">
+            <option value="ALL">All Characters (7)</option>
+            <option value="Arthur">Arthur Auditor</option>
+            <option value="Hilda">Hilda (Mum)</option>
+            <option value="Director">The Director (Antony)</option>
+            <option value="Trevor">Trevor</option>
+            <option value="Dexter">Dexter</option>
+            <option value="Odin">Odin</option>
+            <option value="Cali">Cali (Command)</option>
+          </select>
+        </div>
+        <p style="font-size: 11px; color: var(--text-muted); margin-bottom: 12px; line-height: 1.4;">
+          Canonical master takes locked for all future video and shorts generation. Each character is locked to exactly 1 approved voice profile.
+        </p>
+        <div id="auditions-list" style="display: flex; flex-direction: column; gap: 10px;">
+          <!-- Dynamically loaded audio audition players -->
+        </div>
+      </div>
+
+      <!-- Tab 2: Character Assets Bin -->
+      <div id="pane-assets" class="tab-pane">
+        <span style="font-size: 11px; color: var(--text-dim); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 10px;">Official Mascot Cast</span>
+        <div id="assets-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <div class="btn btn-secondary" style="justify-content: flex-start; padding: 8px;" onclick="applyCharacter('Arthur')">🕵️‍♂️ Arthur</div>
+          <div class="btn btn-secondary" style="justify-content: flex-start; padding: 8px;" onclick="applyCharacter('Cali')">🤖 Cali (Lead)</div>
+          <div class="btn btn-secondary" style="justify-content: flex-start; padding: 8px;" onclick="applyCharacter('The Director')">🎬 The Director</div>
+          <div class="btn btn-secondary" style="justify-content: flex-start; padding: 8px;" onclick="applyCharacter('Trevor')">🔧 Trevor</div>
+          <div class="btn btn-secondary" style="justify-content: flex-start; padding: 8px;" onclick="applyCharacter('Dexter')">📽️ Dexter</div>
+          <div class="btn btn-secondary" style="justify-content: flex-start; padding: 8px;" onclick="applyCharacter('Hilda')">🏡 Hilda</div>
+          <div class="btn btn-secondary" style="justify-content: flex-start; padding: 8px;" onclick="applyCharacter('Odin')">🛡️ Odin</div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Production Packs Browser -->
+      <div id="pane-packs" class="tab-pane">
+        <span style="font-size: 11px; color: var(--text-dim); text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 10px;">Active Series & Packs</span>
+        <select id="pack-selector" style="margin-bottom: 12px;" onchange="onPackSelect()">
+          <option value="">Loading production series...</option>
+        </select>
+        <div id="pack-videos-list" style="display: flex; flex-direction: column; gap: 6px;"></div>
+      </div>
+
+      <!-- Tab 4: Autonomous Trend-to-Video Engine (Apify + Google Trends + Flow + Cast) -->
+      <div id="pane-auto" class="tab-pane">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <span style="font-size: 11px; color: var(--cyan); text-transform: uppercase; font-weight: 800; letter-spacing: 0.5px;">🔥 Trend-to-Video Engine</span>
+          <span style="font-size: 9px; background: rgba(56, 189, 248, 0.15); color: var(--cyan); padding: 1px 6px; border-radius: 4px; border: 1px solid rgba(56, 189, 248, 0.3);">APIFY &amp; FLOW</span>
+        </div>
+        <p style="font-size: 11px; color: var(--text-muted); margin-bottom: 10px; line-height: 1.4;">
+          Scout real-time UK trending topics, auto-match your cast persona (Trevor, Arthur, Hilda, Cali), and generate video packages for Flow &amp; Piper.
+        </p>
+
+        <!-- Scout Live Trends Button & Container -->
+        <button class="btn btn-secondary" style="width: 100%; margin-bottom: 8px; font-size: 11px; border-color: rgba(56, 189, 248, 0.4); color: var(--cyan);" onclick="loadLiveTrends()">
+          📡 Scout Live UK Trends (Apify / Google)
+        </button>
+        <div id="live-trends-box" style="display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; max-height: 130px; overflow-y: auto;">
+          <div style="font-size: 10px; color: var(--text-dim); text-align: center; padding: 6px;">Click button above to load live UK trending topics.</div>
+        </div>
+
+        <label>Selected Trend or Custom Topic</label>
+        <textarea id="auto-input" style="height: 60px; font-size: 11px; margin-bottom: 8px;" placeholder="e.g. Boiler Pressure Dropping in Sub-Zero Weather"></textarea>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+          <div>
+            <label>Presenter Cast</label>
+            <select id="auto-char" style="margin-bottom: 0; font-size: 11px;">
+              <option value="auto">✨ Auto-Match Persona</option>
+              <option value="trevor">Trevor (Tradesman)</option>
+              <option value="arthur">Arthur (Auditor)</option>
+              <option value="hilda">Hilda (Family/Home)</option>
+              <option value="cali">Cali (Chief of Staff)</option>
+              <option value="odin">Odin (Mascot)</option>
+            </select>
+          </div>
+          <div>
+            <label>Pacing &amp; Format</label>
+            <select id="auto-scenes-count" style="margin-bottom: 0; font-size: 11px;">
+              <option value="4" selected>9:16 Short (~35s)</option>
+              <option value="5">16:9 Explainer (~60s)</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" style="width: 100%; margin-bottom: 8px;" onclick="runAutoVideoGenerator()">✨ Auto-Script &amp; Storyboard</button>
+        
+        <!-- Live Dispatch Preview -->
+        <div id="trend-dispatch-card" style="display: none; background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 6px; padding: 8px; margin-top: 8px;">
+          <div style="font-size: 11px; font-weight: 700; color: var(--cyan); margin-bottom: 4px;" id="disp-char-title">Matched: Trevor</div>
+          <p style="font-size: 10px; color: var(--text-muted); line-height: 1.4; margin-bottom: 6px;" id="disp-script-snippet"></p>
+          <button class="btn btn-primary" style="width: 100%; font-size: 11px; padding: 6px;" onclick="dispatchToFlowAndSocial()">🚀 Dispatch to Flow &amp; Social Broadcast</button>
+        </div>
+      </div>
+
+      <!-- Tab 5: Faceless Shorts & Reels Generator -->
+      <div id="pane-faceless" class="tab-pane">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-size: 11px; color: var(--teal); text-transform: uppercase; font-weight: 800;">🔲 Faceless Video Engine</span>
+          <span style="font-size: 10px; background: rgba(20,184,166,0.15); color: var(--teal); padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(20,184,166,0.3);">9:16 VERTICAL</span>
+        </div>
+        <p style="font-size: 10px; color: var(--text-muted); line-height: 1.4; margin-bottom: 10px;">
+          High-retention automated Shorts for YouTube &amp; TikTok. Generates multi-scene graphic B-roll, kinetic centered subtitles, author voiceover, and connects to a <strong>£1.99 Print-Off Guide</strong>.
+        </p>
+
+        <!-- Topic input -->
+        <label style="font-size: 11px; font-weight: 700; color: var(--text-main);">Video Topic or Query</label>
+        <textarea id="faceless-topic" style="height: 54px; font-size: 11px; margin-bottom: 8px; width: 100%;" placeholder="e.g. Boiler Pressure Dropping in Sub-Zero Weather">Boiler Pressure Dropping in Sub-Zero Weather</textarea>
+
+        <!-- Quick Topic Chips -->
+        <div style="display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px;">
+          <button class="btn btn-secondary" style="font-size: 10px; padding: 3px 6px;" onclick="setFacelessTopic('Boiler Pressure Dropping in Sub-Zero Weather', 'diy_trades')">🔧 Boiler Reset</button>
+          <button class="btn btn-secondary" style="font-size: 10px; padding: 3px 6px;" onclick="setFacelessTopic('Hidden Direct Debit Hikes on Water and Council Tax', 'consumer_rights')">⚖️ Direct Debit Hikes</button>
+          <button class="btn btn-secondary" style="font-size: 10px; padding: 3px 6px;" onclick="setFacelessTopic('£15 Weekly Batch Cooking &amp; Winter Pantry Plan', 'budget_finance')">🍲 £15 Batch Cooking</button>
+          <button class="btn btn-secondary" style="font-size: 10px; padding: 3px 6px;" onclick="setFacelessTopic('How to Thaw a Frozen Condensate Pipe Safely', 'diy_trades')">❄️ Thaw Frozen Pipe</button>
+        </div>
+
+        <!-- B-Roll Theme Selection -->
+        <div style="margin-bottom: 10px;">
+          <label style="font-size: 11px; font-weight: 700; color: var(--text-main);">B-Roll Visual Plate &amp; Accent</label>
+          <select id="faceless-theme" style="width: 100%; font-size: 11px; padding: 5px 8px; margin-bottom: 0;">
+            <option value="diy_trades" selected>🔧 UK Home &amp; Trades Diagnostic (Slate &amp; Amber)</option>
+            <option value="consumer_rights">⚖️ UK Consumer Rights &amp; Bills (Navy &amp; Red Alert)</option>
+            <option value="budget_finance">💷 Household Budget &amp; Survival (Emerald &amp; Gold)</option>
+            <option value="tech_agency">🤖 Cali Intelligent Systems (Charcoal &amp; Teal)</option>
+          </select>
+        </div>
+
+        <div style="background: rgba(20,184,166,0.08); border: 1px solid rgba(20,184,166,0.25); border-radius: 6px; padding: 8px; margin-bottom: 12px; font-size: 10px; color: var(--text-muted); line-height: 1.4;">
+          <strong>Included in Pipeline:</strong><br>
+          &bull; Voice Narration: <strong>Arthur Auditor (Locked British Master)</strong><br>
+          &bull; 3 High-Retention 9:16 Graphic B-Roll Plates<br>
+          &bull; Centered Kinetic Subtitles (Calibrated Safe-Zone)<br>
+          &bull; Linked Instant Print-Off Guide: <strong>£1.99</strong><br>
+          &bull; Zero Flow Credits Burned (100% Local GPU/CPU)
+        </div>
+
+        <button class="btn btn-primary" id="btn-generate-faceless" style="width: 100%; padding: 8px; font-weight: 700; font-size: 12px; background: var(--teal); color: #0f172a; border: none;" onclick="generateFacelessShort()">
+          ⚡ Generate Faceless Short &amp; Guide
+        </button>
+
+        <!-- Result Card -->
+        <div id="faceless-result-card" style="display: none; background: rgba(0,0,0,0.4); border: 1px solid var(--teal); border-radius: 6px; padding: 10px; margin-top: 10px;">
+          <div style="font-size: 11px; font-weight: 800; color: var(--teal); margin-bottom: 4px;">✅ Faceless Short Staged!</div>
+          <div style="font-size: 10px; color: var(--text-muted); margin-bottom: 8px;" id="faceless-res-topic"></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <a id="faceless-preview-link" href="#" target="_blank" class="btn btn-secondary" style="text-align: center; font-size: 10px; color: var(--cyan); text-decoration: none;">
+              ▶ Play Video Stream (.mp4)
+            </a>
+            <a id="faceless-guide-link" href="#" target="_blank" class="btn btn-secondary" style="text-align: center; font-size: 10px; color: var(--teal); text-decoration: none;">
+              📚 View Linked £1.99 Guide
+            </a>
+            <a href="http://127.0.0.1:8793/?filter=draft" target="_blank" class="btn btn-primary" style="text-align: center; font-size: 10px; text-decoration: none; padding: 6px;">
+              🚀 Approve in Social Hub
+            </a>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CENTER: WYSIWYG CANVAS & MONITOR -->
+    <section class="panel-center">
+      <div class="monitor-container">
+        <div id="video-wrapper" class="video-frame-wrapper aspect-9-16">
+          <video id="main-player" playsinline></video>
+          <div id="monitor-placeholder" class="monitor-placeholder">
+            <div style="font-size: 32px; margin-bottom: 8px; color: var(--teal);">🎬</div>
+            <div style="font-weight: 600; color: var(--text-main);">Program Monitor</div>
+            <div style="font-size: 11px; margin-top: 4px;">Click Render or Scrub Timeline to Preview</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transport Controls -->
+      <div class="monitor-controls">
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <button class="ctrl-btn" onclick="stepFrame(-1)" title="Previous second">⏮</button>
+          <button class="ctrl-btn" id="play-pause-btn" onclick="togglePlay()" style="font-size: 16px; color: var(--teal);" title="Play/Pause (Space)">▶</button>
+          <button class="ctrl-btn" onclick="stepFrame(1)" title="Next second">⏭</button>
+          <span id="playback-time" style="font-family: monospace; font-size: 12px; margin-left: 8px; color: var(--text-muted);">0.0s / 0.0s</span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span id="render-status-badge" style="font-size: 11px; padding: 3px 8px; background: var(--bg-track); border: 1px solid var(--border); border-radius: 4px; color: var(--text-muted);">Status: Ready</span>
+          <button id="download-btn" class="btn btn-secondary" style="display: none; padding: 4px 10px; font-size: 11px;" onclick="downloadRender()">⬇ Download MP4</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT: INSPECTOR & PROPERTIES -->
+    <aside class="panel-right">
+
+      <!-- Scene Properties -->
+      <div class="inspector-section">
+        <div class="section-title">Selected Scene Inspector</div>
+        <label>Scene Duration</label>
+        <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 10px;">
+          <input type="range" id="scene-duration" min="1.0" max="12.0" step="0.5" value="4.0" oninput="updateActiveSceneDuration(this.value)">
+          <span id="scene-duration-val" style="font-family: monospace; font-size: 12px; width: 45px;">4.0s</span>
+        </div>
+
+        <label>Visual Prompt / Asset</label>
+        <textarea id="scene-prompt" style="height: 60px; font-size: 12px;" onchange="updateActiveScenePrompt(this.value)"></textarea>
+      </div>
+
+      <!-- Voice Studio -->
+      <div class="inspector-section">
+        <div class="section-title">🎙️ Local Character Speech</div>
+        <label>Character Voice Profile</label>
+        <select id="char-voice" onchange="onVoiceProfileChange()">
+          <option value="arthur" selected>Arthur Auditor (Consumer Protection · Locked: arthur-natural)</option>
+          <option value="hilda">Hilda (Family & Home Advice · Locked: Mum Voice)</option>
+          <option value="the_director">The Director (Antony Leadership · Locked: Clone Reference)</option>
+          <option value="trevor">Trevor (Handyman & DIY · Locked: 02-trevor)</option>
+          <option value="dexter">Dexter (Creative Director · Locked: 03-dexter)</option>
+          <option value="odin">Odin (System Security · Locked: odin-michael)</option>
+          <option value="cali">Cali (Platform Command · Locked: Jenny 1.0x)</option>
+        </select>
+
+        <div id="voice-desc" style="font-size: 11px; color: var(--text-muted); margin-bottom: 8px; line-height: 1.4;">Official intelligent assistant voice (Jenny model)</div>
+
+        <label>Speed Pacing</label>
+        <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 12px;">
+          <input type="range" id="speech-speed" min="0.8" max="1.25" step="0.05" value="1.0" oninput="document.getElementById('speed-display').innerText = this.value + 'x'">
+          <span id="speed-display" style="font-family: monospace; font-size: 12px; width: 40px;">1.0x</span>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <span style="font-size: 11px; color: var(--teal);">Target: -16 LUFS (Normalized)</span>
+          <button class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;" onclick="auditionActiveScene()">Audition Voice</button>
+        </div>
+      </div>
+
+      <!-- Subtitle Styling -->
+      <div class="inspector-section">
+        <div class="section-title">✨ Subtitle Styling Engine</div>
+        <label>Style Preset</label>
+        <select id="subtitle-preset" onchange="onSubtitlePresetChange()">
+          <option value="yellow">Yellow Impact (High Retention)</option>
+          <option value="white">Classic White (Clean & Minimal)</option>
+          <option value="cyan">Cyan Neon (Tech/Operations)</option>
+        </select>
+
+        <div style="display: flex; gap: 8px; align-items: center; margin-top: 6px;">
+          <input type="checkbox" id="include-bumper" checked style="width: 16px; margin: 0;">
+          <label for="include-bumper" style="margin: 0; cursor: pointer; text-transform: none; font-size: 12px;">Prepend 3s Branded Opener</label>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- DRAGGABLE TIMELINE RESIZER SPLITTER -->
+  <div id="timeline-resizer" class="timeline-resizer" title="Drag to adjust timeline height"></div>
+
+  <!-- 3. MULTI-TRACK NLE TIMELINE (BOTTOM DOCK) -->
+  <footer class="timeline-dock" id="timeline-dock">
+    <!-- Timeline Toolbar -->
+    <div class="timeline-toolbar">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 11px; font-weight: 700; color: var(--text-dim); text-transform: uppercase;">Tracks</span>
+        <button class="btn btn-secondary" style="padding: 2px 6px; font-size: 10px;" onclick="addScene()">+ Split Cut</button>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 11px; color: var(--text-muted);">Timeline Zoom</span>
+        <input type="range" id="timeline-zoom" min="20" max="100" value="45" style="width: 100px; margin: 0;" oninput="onTimelineZoom(this.value)">
+      </div>
+    </div>
+
+    <!-- Timeline Scroll Workspace -->
+    <div class="timeline-scroll-area">
+      <!-- Fixed Track Headers -->
+      <div class="track-headers-column">
+        <div style="height: 24px; border-bottom: 1px solid var(--border); font-size: 9px; padding: 4px; color: var(--text-dim);">TIMECODE</div>
+        <div class="track-header-cell"><span style="color: var(--yellow);">T1</span> Subtitles</div>
+        <div class="track-header-cell"><span style="color: var(--cyan);">V1</span> Video / Stills</div>
+        <div class="track-header-cell"><span style="color: var(--teal);">A1</span> Narration (Piper)</div>
+        <div class="track-header-cell"><span style="color: #a855f7;">A2</span> Music Bed</div>
+      </div>
+
+      <!-- Tracks Container -->
+      <div id="tracks-container" class="tracks-canvas-container" onclick="onTimelineClick(event)">
+        <!-- Ruler -->
+        <div class="ruler-bar" id="ruler-bar">
+          <!-- Ticks generated dynamically -->
+        </div>
+
+        <!-- Draggable Playhead -->
+        <div id="timeline-playhead" class="timeline-playhead" style="left: 0px;"></div>
+
+        <!-- Track 1: Subtitles -->
+        <div class="timeline-track-row" id="track-sub"></div>
+
+        <!-- Track 2: Visual Clips -->
+        <div class="timeline-track-row" id="track-video"></div>
+
+        <!-- Track 3: Piper Voice -->
+        <div class="timeline-track-row" id="track-audio"></div>
+
+        <!-- Track 4: Music Bed -->
+        <div class="timeline-track-row" id="track-music">
+          <div class="timeline-clip" style="left: 0; width: 450px; background: linear-gradient(135deg, #7e22ce, #9333ea);">
+            🎵 Looped Brand Bed (-22dB Ducked)
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script src="cali-sidekick.js"></script>
+</body>
+</html>

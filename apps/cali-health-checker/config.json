@@ -1,0 +1,39 @@
+{
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8796
+  },
+  "agent": {
+    "name": "Vigil",
+    "role": "Reliability & Overwatch Health Specialist",
+    "generation": 2,
+    "philosophy": "Zero downtime complacency. Strict certificate verification and automated defect review."
+  },
+  "kuma": {
+    "url": "http://192.168.0.165:3001",
+    "username": "admin",
+    "password": ""
+  },
+  "monitored_domains": [
+    {
+      "domain": "cali-media.ltd",
+      "name": "Cali Media Ltd (Corporate)"
+    },
+    {
+      "domain": "call-on.media",
+      "name": "Call On Media (Production)"
+    },
+    {
+      "domain": "call-on.dad",
+      "name": "Call On Dad (Community)"
+    },
+    {
+      "domain": "call-on.mom",
+      "name": "Call On Mom (Community)"
+    },
+    {
+      "domain": "call-on.shop",
+      "name": "Call On Shop (E-Commerce)"
+    }
+  ]
+}

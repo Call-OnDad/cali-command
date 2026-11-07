@@ -1,0 +1,24 @@
+{
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8799
+  },
+  "company": {
+    "name": "CALI MEDIA LTD",
+    "company_number": "17373615",
+    "incorporation_date": "2026-07-31",
+    "accounts_due": "2027-07-31",
+    "confirmation_statement_due": "2027-08-14",
+    "corporation_tax_rate": 0.19,
+    "currency": "GBP",
+    "currency_symbol": "\u00a3"
+  },
+  "printful": {
+    "store_id": "18266176",
+    "api_base": "https://api.printful.com"
+  },
+  "firefly": {
+    "url": "http://192.168.0.161",
+    "vmid": 106
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8794
+  },
+  "briefing": {
+    "founder_name": "Antony Brown",
+    "company": "Cali Media Ltd",
+    "schedule_time": "08:00",
+    "voice": "cali",
+    "target_domains": [
+      "call-on.dad",
+      "call-on.mom",
+      "call-on.shop",
+      "call-on.media",
+      "cali-media.ltd"
+    ]
+  },
+  "endpoints": {
+    "umami": "http://192.168.0.163:3000",
+    "proxmox": "http://192.168.0.10:8006",
+    "central_hub": "http://127.0.0.1:8800",
+    "health_checker": "http://127.0.0.1:8796",
+    "security_radar": "http://127.0.0.1:8797",
+    "finance_ledger": "http://127.0.0.1:8799",
+    "dev_workbench": "http://127.0.0.1:8792"
+  }
+}

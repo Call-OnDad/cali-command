@@ -1,0 +1,37 @@
+{
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8795
+  },
+  "agent": {
+    "name": "Haven",
+    "role": "Community Care & E-Commerce Specialist",
+    "generation": 2,
+    "philosophy": "Family-first support, zero dark-patterns, seamless merchandise fulfillment."
+  },
+  "sites": {
+    "dad": {
+      "name": "Call On Dad",
+      "domain": "call-on.dad",
+      "path": "D:/The Cali Project/sites/ct500/dad",
+      "focus": "Fatherhood mental health, practical handyman guides, volunteer mentorship."
+    },
+    "mom": {
+      "name": "Call On Mom",
+      "domain": "call-on.mom",
+      "path": "D:/The Cali Project/sites/ct500/mom",
+      "focus": "Motherhood wellness, household budgeting, community peer circles."
+    },
+    "shop": {
+      "name": "Call On Shop",
+      "domain": "call-on.shop",
+      "path": "D:/The Cali Project/sites/ct500/shop",
+      "focus": "Official community merchandise, proceeds support outreach programs."
+    }
+  },
+  "printful": {
+    "api_key": "",
+    "store_id": "18266176",
+    "api_url": "https://api.printful.com"
+  }
+}

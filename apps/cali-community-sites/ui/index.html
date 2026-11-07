@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cali Community Sites & Shop Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top-header">
+    <div class="brand">
+      <span>🌐</span> CALI <span>COMMUNITY SITES & SHOP</span>
+      <span class="badge">AGENT HAVEN (GEN 2) · PORT 8795</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <a href="/" onclick="if(window.parent && window.parent.closeAppViewer){window.parent.closeAppViewer();return false;}" class="btn" style="text-decoration: none; color: var(--teal); font-size: 11px; padding: 6px 12px; border-color: var(--border);">
+        &larr; Central Hub (:8800)
+      </a>
+      <button class="btn btn-primary" onclick="syncPrintful()">🔄 Sync Printful Catalog</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- TOP STATS -->
+    <section class="stats-row" id="stats-row">
+      <!-- Populated dynamically -->
+    </section>
+
+    <!-- FULL WIDTH: ALL COMMUNITY GUIDES & PRINT-OFF RESOURCES -->
+    <section class="card">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 12px;">
+        <div>
+          <h3 style="display: flex; align-items: center; gap: 8px;">
+            <span>📚</span> Call-On Guides &amp; Print-Off Resources
+            <span class="badge" style="background: rgba(20,184,166,0.15); color: var(--teal); border-color: rgba(20,184,166,0.4);">
+              ALL GUIDES IN ONE PLACE · £1.99 PRINT-OFFS
+            </span>
+          </h3>
+          <p style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">
+            Official printable DIY checklists (£1.99) together with free Call-On Dad &amp; Call-On Mom dashboard walkthrough guides.
+          </p>
+        </div>
+        <div style="font-size: 11px; color: var(--text-muted);">
+          Location: <code style="color: var(--teal);">sites/ct500/shop/guides/</code>
+        </div>
+      </div>
+
+      <!-- PRINT-OFF GUIDES SUBSECTION (£1.99) -->
+      <div>
+        <div style="font-size: 12px; font-weight: 700; color: var(--teal); margin-bottom: 10px; display: flex; align-items: center; gap: 6px;">
+          <span>🖨️</span> Instant Print-Off Emergency Guides (£1.99 each)
+        </div>
+        <div id="print-off-guides-list" class="guides-grid"></div>
+      </div>
+
+      <!-- FREE ONBOARDING & DASHBOARD GUIDES SUBSECTION -->
+      <div style="margin-top: 10px;">
+        <div style="font-size: 12px; font-weight: 700; color: var(--blue); margin-bottom: 10px; display: flex; align-items: center; gap: 6px;">
+          <span>🧭</span> Free Call-On Dashboard &amp; Onboarding Guides
+        </div>
+        <div id="dashboard-guides-list" class="guides-grid"></div>
+      </div>
+    </section>
+
+    <!-- TWO COLUMN: SITES OVERVIEW & PHYSICAL MERCHANDISE -->
+    <div class="two-col">
+      <!-- SITES -->
+      <div class="card">
+        <h3>🏠 Community Portals (CT500)</h3>
+        <p style="font-size: 11px; color: var(--text-muted);">Live status across call-on.dad, call-on.mom, and call-on.shop.</p>
+        <div id="sites-list" class="sites-list"></div>
+      </div>
+
+      <!-- APPAREL MERCHANDISE -->
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h3>🛍️ Printful Apparel &amp; Merchandise</h3>
+          <span class="badge">PRINT ON DEMAND</span>
+        </div>
+        <p style="font-size: 11px; color: var(--text-muted);">Physical merchandise fulfillment via Printful API.</p>
+        <div id="products-list" class="products-grid"></div>
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,27 @@
+{
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8792
+  },
+  "git": {
+    "repo_path": "D:/The Cali Project",
+    "default_branch": "master"
+  },
+  "security_scan": {
+    "enabled": true,
+    "blocked_patterns": [
+      "sk-or-v1-[a-f0-9]{64}",
+      "sk-[a-zA-Z0-9]{32,}",
+      "gsk_[a-zA-Z0-9]{40,}",
+      "PVEAPIToken=[a-zA-Z0-9@!=-]+",
+      "AKIA[0-9A-Z]{16}",
+      "ghp_[a-zA-Z0-9]{36}",
+      "-----BEGIN [A-Z ]+ PRIVATE KEY-----"
+    ]
+  },
+  "production_caddy": {
+    "host": "192.168.0.50",
+    "vmid": 500,
+    "web_root": "/var/www"
+  }
+}

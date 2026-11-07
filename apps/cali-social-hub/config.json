@@ -1,0 +1,120 @@
+{
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8793
+  },
+  "agent": {
+    "name": "Echo",
+    "role": "Social & Omnichannel Publishing Specialist",
+    "generation": 2,
+    "philosophy": "Autonomous, evidence-backed publishing with zero spam, strict per-platform formatting, and cross-brand integrity."
+  },
+  "networks": {
+    "tiktok": {
+      "name": "TikTok",
+      "max_chars": 2200,
+      "media": "video",
+      "status": "active"
+    },
+    "youtube_posts": {
+      "name": "YouTube",
+      "max_chars": 5000,
+      "media": "video_or_image",
+      "status": "active"
+    },
+    "facebook": {
+      "name": "Facebook",
+      "max_chars": 63206,
+      "media": "video_or_image",
+      "status": "active"
+    },
+    "instagram": {
+      "name": "Instagram",
+      "max_chars": 2200,
+      "media": "video_or_image",
+      "status": "active"
+    },
+    "linkedin": {
+      "name": "LinkedIn",
+      "max_chars": 3000,
+      "media": "text_or_image",
+      "status": "active"
+    },
+    "pinterest": {
+      "name": "Pinterest",
+      "max_chars": 500,
+      "media": "image",
+      "status": "active"
+    },
+    "bluesky": {
+      "name": "Bluesky",
+      "max_chars": 300,
+      "media": "text_or_image",
+      "status": "active"
+    },
+    "mastodon": {
+      "name": "Mastodon",
+      "max_chars": 500,
+      "media": "text_or_image",
+      "status": "active"
+    },
+    "tumblr": {
+      "name": "Tumblr",
+      "max_chars": 10000,
+      "media": "text_or_image",
+      "status": "active"
+    }
+  },
+  "brands": [
+    {
+      "id": "cali-media.ltd",
+      "name": "Cali Media Group",
+      "badge": "\ud83c\udfe2 Corporate"
+    },
+    {
+      "id": "call-on.media",
+      "name": "Call On Media",
+      "badge": "\ud83c\udfac Video Production"
+    },
+    {
+      "id": "call-on.dad",
+      "name": "Call On Dad",
+      "badge": "\ud83d\udd27 Handyman & Guides"
+    },
+    {
+      "id": "call-on.mom",
+      "name": "Call On Mom",
+      "badge": "\ud83c\udfe1 Home & Budgeting"
+    },
+    {
+      "id": "call-on.shop",
+      "name": "Call On Shop",
+      "badge": "\ud83d\udecd\ufe0f Merchandise & Merch"
+    }
+  ],
+  "video_studio_exports_dir": "D:/The Cali Project/apps/cali-video-studio/exports",
+  "credentials": {
+    "bluesky": {
+      "handle": "media@cali-media.ltd",
+      "app_password": ""
+    },
+    "tiktok": {
+      "client_key": "",
+      "client_secret": ""
+    },
+    "linkedin": {
+      "access_token": "",
+      "client_id": ""
+    },
+    "pinterest": {
+      "app_id": "",
+      "access_token": "",
+      "api_key": ""
+    },
+    "youtube": {
+      "api_key": "",
+      "client_id": "",
+      "client_secret": ""
+    }
+  }
+}

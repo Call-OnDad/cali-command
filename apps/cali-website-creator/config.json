@@ -1,0 +1,14 @@
+{
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8789
+  },
+  "agent": {
+    "name": "Scribe",
+    "role": "Autonomous Page Builder & Community Web Artisan",
+    "generation": 2,
+    "philosophy": "Rapid semantic web delivery. Beautiful, accessible, zero-dependency sovereign pages."
+  },
+  "export_dir": "d:/The Cali Project/apps/cali-website-creator/exports",
+  "ct500_caddy_root": "/var/www/call-on"
+}

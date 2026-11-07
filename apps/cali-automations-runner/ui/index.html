@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cali Autonomous Daily Briefing & Automations Runner | Port 8794</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="logo-orb">☀️</div>
+        <div class="brand-text">
+          <h1>Cali Daily Briefing &amp; Automations Runner</h1>
+          <span class="subtext">Autonomous Cross-Suite Aggregator &bull; Executive Morning Briefing &bull; Scheduled Tasks &bull; Port 8794</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="status-pill status-active" id="engineStatusPill">
+          <span class="pulse-dot"></span>
+          <span>Scheduler Active</span>
+        </div>
+        <a href="/" onclick="if(window.parent && window.parent.closeAppViewer){window.parent.closeAppViewer();return false;}" class="btn btn-secondary btn-sm" target="_blank" title="Return to Central Command Hub">
+          <span>&larr; Central Hub (:8800)</span>
+        </a>
+        <button id="generateBtn" class="btn btn-primary btn-sm" onclick="compileBriefing()">
+          <span class="icon">⚡</span> Compile Fresh Briefing
+        </button>
+      </div>
+    </header>
+
+    <!-- KPI Strip -->
+    <section class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-icon">📅</div>
+        <div class="kpi-body">
+          <span class="kpi-label">Latest Briefing</span>
+          <div class="kpi-value" id="kpiBriefingDate">Today</div>
+          <span class="kpi-foot" id="kpiBriefingTime">Compiled at 08:00 AM</span>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">⚙️</div>
+        <div class="kpi-body">
+          <span class="kpi-label">Active Automations</span>
+          <div class="kpi-value value-amber" id="kpiActiveJobs">5</div>
+          <span class="kpi-foot">5 Registered Standalone Jobs</span>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">🎯</div>
+        <div class="kpi-body">
+          <span class="kpi-label">Execution Success Rate</span>
+          <div class="kpi-value value-emerald" id="kpiSuccessRate">100%</div>
+          <span class="kpi-foot" id="kpiTotalRuns">0 total runs recorded</span>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">🎙️</div>
+        <div class="kpi-body">
+          <span class="kpi-label">Executive Voice</span>
+          <div class="kpi-value" style="color: var(--cyan)">Cali</div>
+          <span class="kpi-foot">Piper TTS Script Ready</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="nav-tab active" data-tab="tab-briefing" onclick="switchTab('tab-briefing')">
+        <span class="tab-icon">☀️</span> Executive Daily Briefing
+      </button>
+      <button class="nav-tab" data-tab="tab-jobs" onclick="switchTab('tab-jobs')">
+        <span class="tab-icon">⚙️</span> Scheduled Automations
+        <span class="badge" id="jobCountBadge">5</span>
+      </button>
+      <button class="nav-tab" data-tab="tab-logs" onclick="switchTab('tab-logs')">
+        <span class="tab-icon">📜</span> Execution Receipts &amp; Logs
+      </button>
+    </nav>
+
+    <!-- Main Content Panes -->
+    <main class="main-content">
+      <!-- Tab 1: Executive Daily Briefing -->
+      <section id="tab-briefing" class="tab-pane active">
+        <div class="briefing-layout">
+          <!-- Main Briefing Article -->
+          <div class="panel briefing-main">
+            <div class="panel-header">
+              <div>
+                <h3 id="briefingHeadline">Executive Morning Briefing</h3>
+                <span class="subtext" id="briefingSubtitle">Cross-departmental telemetry compiled for Antony Brown</span>
+              </div>
+              <button class="btn btn-secondary btn-sm" onclick="copyBriefingText()">
+                <span>📋 Copy Text</span>
+              </button>
+            </div>
+            <div id="briefingContent" class="briefing-rendered-html">
+              <div class="empty-state">Loading briefing...</div>
+            </div>
+          </div>
+
+          <!-- Right Column: Voice Narration & Archive -->
+          <div class="briefing-sidebar">
+            <div class="panel">
+              <div class="panel-header">
+                <h3>🎙️ Cali Voice Narration Script</h3>
+                <span class="panel-badge">Piper TTS</span>
+              </div>
+              <p class="subtext" style="margin-bottom: 0.75rem;">Optimized cadence and pronunciation for hands-free audio playback:</p>
+              <div class="tts-box">
+                <pre class="tts-script" id="ttsScriptContent">Loading narration script...</pre>
+              </div>
+              <div style="margin-top: 0.75rem; display: flex; gap: 0.5rem;">
+                <button class="btn btn-secondary btn-sm" onclick="copyTtsScript()" style="width: 100%;">
+                  <span>📋 Copy Script</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="panel" style="margin-top: 1.25rem;">
+              <div class="panel-header">
+                <h3>📜 Historical Briefings</h3>
+              </div>
+              <div class="archive-list" id="briefingArchiveList">
+                <div class="empty-state">Loading archive...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab 2: Scheduled Automations -->
+      <section id="tab-jobs" class="tab-pane">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h3>Autonomous Scheduled Tasks</h3>
+              <p class="subtext">Configure background automation jobs, execution intervals, and run immediate on-demand audits</p>
+            </div>
+          </div>
+
+          <div class="jobs-grid" id="jobsGrid">
+            <div class="empty-state">Loading scheduled jobs...</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab 3: Execution Receipts & Logs -->
+      <section id="tab-logs" class="tab-pane">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h3>Automation Execution Receipts</h3>
+              <p class="subtext">Full audit ledger of all autonomous runs, execution durations, and exit statuses</p>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="fetchLogs()">
+              <span>🔄 Refresh Logs</span>
+            </button>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Job Name</th>
+                  <th>Status</th>
+                  <th>Output / Result</th>
+                  <th>Execution Duration</th>
+                  <th>Timestamp</th>
+                </tr>
+              </thead>
+              <tbody id="logsTableBody">
+                <tr><td colspan="6" class="empty-state">No execution logs recorded yet.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+

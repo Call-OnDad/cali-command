@@ -1,0 +1,76 @@
+{
+  "project_id": "trend_1793994085_trevor",
+  "created_at": "2026-11-06 19:44:14",
+  "status": "RENDERED_READY_FOR_APPROVAL",
+  "topic": "Boiler Pressure Dropping in Sub-Zero Weather",
+  "character": {
+    "id": "trevor",
+    "name": "Trevor",
+    "role": "Tradesman & Practical Maintenance",
+    "keywords": [
+      "boiler",
+      "radiator",
+      "plumbing",
+      "pipe",
+      "freeze",
+      "frost",
+      "heating",
+      "leak",
+      "diy",
+      "tools",
+      "mechanic",
+      "insulation",
+      "van",
+      "trades"
+    ],
+    "voice": "northern",
+    "flow_prompt": "Trevor the northern tradesman in his workshop wearing navy work jacket and hi-vis trim, holding a wrench, speaking directly to camera with friendly, practical delivery. Photorealistic 3D render, cinematic warm workshop lighting, tool wall in background. Aspect ratio 9:16 vertical short.",
+    "brand_affinity": "call-on.dad",
+    "avatar": "locked_images/portraits/trevor.webp"
+  },
+  "script": {
+    "topic": "Boiler Pressure Dropping in Sub-Zero Weather",
+    "character_id": "trevor",
+    "character_name": "Trevor",
+    "role": "Tradesman & Practical Maintenance",
+    "hook": "Right lads, Trevor here. If your boiler pressure dropping in sub-zero weather is playing up today, stop and listen before you call a rogue tradesman.",
+    "body": "First thing: check the pressure gauge right under the unit. If it's below one bar, you don't need a new pump\u2014you just need to open the filling loop until it hits 1.5. Nine times out of ten that resets the lockout completely.",
+    "cta": "Save this video for when the cold hits, and grab our complete step-by-step DIY Checklist for \u00a312.50 over on https://call-on.shop/guides/boiler-pressure-dropping-in-sub-zero-weather. Proper jobs, zero nonsense.",
+    "full_script": "Right lads, Trevor here. If your boiler pressure dropping in sub-zero weather is playing up today, stop and listen before you call a rogue tradesman. First thing: check the pressure gauge right under the unit. If it's below one bar, you don't need a new pump\u2014you just need to open the filling loop until it hits 1.5. Nine times out of ten that resets the lockout completely. Save this video for when the cold hits, and grab our complete step-by-step DIY Checklist for \u00a312.50 over on https://call-on.shop/guides/boiler-pressure-dropping-in-sub-zero-weather. Proper jobs, zero nonsense.",
+    "word_count": 91,
+    "estimated_duration_sec": 39,
+    "brand_target": "call-on.dad",
+    "shop_link": "https://call-on.shop/guides/boiler-pressure-dropping-in-sub-zero-weather",
+    "guide_price": "\u00a312.50",
+    "flow_prompt": "Trevor the northern tradesman in his workshop wearing navy work jacket and hi-vis trim, holding a wrench, speaking directly to camera with friendly, practical delivery. Photorealistic 3D render, cinematic warm workshop lighting, tool wall in background. Aspect ratio 9:16 vertical short. Lower third banner: \"Official Guide: call-on.shop/guides/boiler-pressure-dropping-in-sub-zero-weather\". Spoken line: \"Right lads, Trevor here. If your boiler pressure dropping in sub-zero weather is playing up today, stop and listen before you call a rogue tradesman.\" Measured pace, natural lip-sync, crisp audio."
+  },
+  "guide": {
+    "title": "Call-On Dad Emergency Guide: Boiler Pressure Dropping in Sub-Zero Weather (DIY Diagnosis & Reset Checklist)",
+    "slug": "boiler-pressure-dropping-in-sub-zero-weather",
+    "price_gbp": 12.5,
+    "category": "Trade & DIY Emergency Toolkits",
+    "shop_url": "https://call-on.shop/guides/boiler-pressure-dropping-in-sub-zero-weather",
+    "local_shop_url": "http://127.0.0.1:8795/shop#boiler-pressure-dropping-in-sub-zero-weather",
+    "file_path": "d:/The Cali Project/sites/ct500/dad/guides/boiler-pressure-dropping-in-sub-zero-weather.html"
+  },
+  "rendered_video": {
+    "success": true,
+    "video_path": "d:/The Cali Project/apps/cali-video-studio/exports/trend_videos/trend_1793994085_trevor.mp4",
+    "video_filename": "trend_1793994085_trevor.mp4",
+    "stream_url": "http://127.0.0.1:8790/stream/exports/trend_videos/trend_1793994085_trevor.mp4",
+    "duration": 30.502583,
+    "size_bytes": 1495398
+  },
+  "flow_dispatch": {
+    "model": "Veo 3.1 - Lite",
+    "aspect_ratio": "9:16",
+    "character_voice": true,
+    "prompt": "Trevor the northern tradesman in his workshop wearing navy work jacket and hi-vis trim, holding a wrench, speaking directly to camera with friendly, practical delivery. Photorealistic 3D render, cinematic warm workshop lighting, tool wall in background. Aspect ratio 9:16 vertical short. Lower third banner: \"Official Guide: call-on.shop/guides/boiler-pressure-dropping-in-sub-zero-weather\". Spoken line: \"Right lads, Trevor here. If your boiler pressure dropping in sub-zero weather is playing up today, stop and listen before you call a rogue tradesman.\" Measured pace, natural lip-sync, crisp audio.",
+    "target_credits": 10
+  },
+  "local_delivery": {
+    "voice_model": "northern",
+    "video_file": "trend_1793994085_trevor.mp4",
+    "stream_url": "http://127.0.0.1:8790/stream/exports/trend_videos/trend_1793994085_trevor.mp4"
+  }
+}

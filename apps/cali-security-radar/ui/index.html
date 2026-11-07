@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cali Security Findings & Threat Radar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top-header">
+    <div class="brand">
+      <span>🛡️</span> CALI <span>SECURITY & THREAT RADAR</span>
+      <span class="badge">AGENT AEGIS (GEN 2) · PORT 8797</span>
+    </div>
+    <button class="btn btn-primary" onclick="loadSecurity()">⚡ Deep Vulnerability Scan</button>
+  </header>
+
+  <main class="container">
+    <section class="stats-row" id="stats-row"></section>
+
+    <div class="card">
+      <h3>🌐 Shielded Web Assets (Cloudflare WAF & TLS)</h3>
+      <div id="assets-list" class="assets-list"></div>
+    </div>
+
+    <div class="card">
+      <h3>🚨 Vulnerability Dispositions & CrowdSec IP Bans</h3>
+      <div id="threats-box" class="threats-box"></div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
+

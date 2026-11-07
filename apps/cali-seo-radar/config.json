@@ -1,0 +1,82 @@
+{
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8791
+  },
+  "serpbear": {
+    "endpoint": "http://192.168.0.169:3000",
+    "api_key": "",
+    "fallback_to_local_cache": true
+  },
+  "crawler": {
+    "max_pages_per_domain": 50,
+    "request_timeout_sec": 8,
+    "user_agent": "Mozilla/5.0 (compatible; Cali-SEO-Radar/1.0; +https://cali-media.ltd)"
+  },
+  "domains": [
+    {
+      "id": "cali-media.ltd",
+      "url": "https://cali-media.ltd",
+      "name": "Cali Media Limited",
+      "category": "Corporate & Tech Core",
+      "target_keywords": [
+        "cali media",
+        "autonomous marketing suite",
+        "independent ai tools",
+        "local video automation",
+        "consumer protection guides"
+      ]
+    },
+    {
+      "id": "call-on.media",
+      "url": "https://call-on.media",
+      "name": "Call On Media",
+      "category": "Video & Social Production",
+      "target_keywords": [
+        "short form video agency",
+        "automated reels generation",
+        "brand mascot animation",
+        "content velocity uk"
+      ]
+    },
+    {
+      "id": "call-on.dad",
+      "url": "https://call-on.dad",
+      "name": "Call On Dad",
+      "category": "DIY, Repairs & Family Tech",
+      "target_keywords": [
+        "dad advice direct debit traps",
+        "moving house utility check",
+        "home handyman fixes uk",
+        "trevor tradesman guides"
+      ]
+    },
+    {
+      "id": "call-on.mom",
+      "url": "https://call-on.mom",
+      "name": "Call On Mom",
+      "category": "Home, Care & Household Advice",
+      "target_keywords": [
+        "household budgeting tips",
+        "family consumer rights",
+        "hilda home care wisdom",
+        "smart grocery savings"
+      ]
+    },
+    {
+      "id": "call-on.shop",
+      "url": "https://call-on.shop",
+      "name": "Call On Shop",
+      "category": "E-Commerce & Merchandise",
+      "target_keywords": [
+        "cali official merchandise",
+        "arthur mascot apparel",
+        "creator gear shop",
+        "safe checkout deals"
+      ]
+    }
+  ],
+  "pagespeed": {
+    "api_key": ""
+  }
+}

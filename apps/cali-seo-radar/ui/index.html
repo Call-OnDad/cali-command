@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cali SEO & Search Radar Suite</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <div class="brand">
+      <span>🔍</span> CALI <span>SEO RADAR</span>
+      <span style="font-size: 10px; color: var(--text-dim); border: 1px solid var(--border); padding: 1px 6px; border-radius: 4px; font-weight: normal;">CT120 NATIVE</span>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <a href="/" onclick="if(window.parent && window.parent.closeAppViewer){window.parent.closeAppViewer();return false;}" class="btn" style="text-decoration: none; color: var(--teal); font-size: 11px; padding: 4px 10px; border-color: var(--border);">
+        &larr; Central Hub (:8800)
+      </a>
+    </div>
+
+    <div class="domain-bar">
+      <label style="font-size: 11px; color: var(--text-muted); font-weight: 600;">ACTIVE DOMAIN:</label>
+      <select id="active-domain-select" class="domain-select" onchange="onDomainChange()">
+        <option value="cali-media.ltd">cali-media.ltd (Cali Media Group)</option>
+        <option value="call-on.media">call-on.media (Video & Creative)</option>
+        <option value="call-on.dad">call-on.dad (Family & DIY Guides)</option>
+        <option value="call-on.mom">call-on.mom (Home & Care Advice)</option>
+        <option value="call-on.shop">call-on.shop (Merchandise Store)</option>
+      </select>
+
+      <div id="domain-health-pill" class="health-pill health-good">
+        ● Health: 92% (Grade A)
+      </div>
+
+      <div id="ct120-status-badge" style="font-size: 11px; padding: 4px 8px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; color: var(--text-muted);">
+        CT120 SerpBear: <span style="color: var(--teal);">Connecting...</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION TABS -->
+  <nav class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('tab-ranks')">📊 Rank Radar</button>
+    <button class="tab-btn" onclick="switchTab('tab-crawler')">🕷️ Site Crawler & Audit</button>
+    <button class="tab-btn" onclick="switchTab('tab-content')">✍️ Content Auditor & Schema</button>
+    <button class="tab-btn" onclick="switchTab('tab-domains')">🌐 Domain Fleet (5)</button>
+  </nav>
+
+  <!-- APP MAIN CONTAINER -->
+  <main class="app-container">
+
+    <!-- 1. RANK RADAR TAB -->
+    <section id="tab-ranks" class="tab-content active">
+      <div class="stat-grid">
+        <div class="stat-box">
+          <div class="stat-label">Tracked Keywords</div>
+          <div class="stat-value" id="stat-total-kws">-</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Top 3 Rankings</div>
+          <div class="stat-value" id="stat-top3" style="color: var(--teal);">-</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Top 10 Rankings</div>
+          <div class="stat-value" id="stat-top10" style="color: var(--green);">-</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Rank Shifts (7d)</div>
+          <div class="stat-value" id="stat-shifts" style="color: var(--cyan);">-</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span>SERP Keyword Tracker</span>
+          <div style="display: flex; gap: 8px;">
+            <input type="text" id="new-keyword-input" placeholder="Enter target keyword..." style="width: 220px;">
+            <button class="btn btn-primary" onclick="addKeyword()">+ Add Keyword</button>
+            <button class="btn" onclick="refreshKeywords()">🔄 Refresh SERP</button>
+            <button class="btn" onclick="exportKeywordsCSV()">⬇ Export CSV</button>
+          </div>
+        </div>
+
+        <table class="radar-table">
+          <thead>
+            <tr>
+              <th>Target Keyword</th>
+              <th style="width: 100px;">Current Position</th>
+              <th style="width: 80px;">Change</th>
+              <th style="width: 110px;">Search Volume</th>
+              <th style="width: 90px;">Difficulty</th>
+              <th>Ranking Landing Page</th>
+              <th style="width: 120px;">Last Sync</th>
+            </tr>
+          </thead>
+          <tbody id="keywords-table-body">
+            <!-- Dynamically populated rows -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 2. SITE CRAWLER TAB -->
+    <section id="tab-crawler" class="tab-content">
+      <div class="card">
+        <div class="card-title">
+          <span>On-Page Technical Crawler</span>
+          <div style="display: flex; gap: 8px;">
+            <input type="text" id="crawl-url-input" style="width: 300px;" value="https://cali-media.ltd">
+            <button class="btn btn-primary" onclick="runLiveCrawl()">🚀 Run Live Crawl</button>
+          </div>
+        </div>
+
+        <div id="crawl-summary-bar" style="display: flex; gap: 16px; margin-bottom: 16px; padding: 12px; background: var(--bg-card); border-radius: 6px; font-size: 12px; align-items: center;">
+          <div>Status: <strong id="crawl-status-code" style="color: var(--green);">200 OK</strong></div>
+          <div>Latency: <strong id="crawl-latency">184 ms</strong></div>
+          <div>Word Count: <strong id="crawl-words">1,240 words</strong></div>
+          <div>Health Score: <strong id="crawl-score" style="color: var(--teal);">92 / 100</strong></div>
+          <div style="margin-left: auto; font-size: 11px; padding: 3px 8px; background: rgba(16, 185, 129, 0.15); color: #34d399; border-radius: 4px; border: 1px solid rgba(16, 185, 129, 0.3);">
+            ⚡ Core Web Vitals: <strong>PASS (TTFB &lt; 200ms)</strong>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div>
+            <h4 style="color: var(--teal); margin-bottom: 8px; font-size: 12px; text-transform: uppercase;">Meta Signals</h4>
+            <div style="background: var(--bg-card); padding: 12px; border-radius: 6px; display: flex; flex-direction: column; gap: 8px;">
+              <div><strong>Page Title:</strong> <span id="meta-title-val" style="color: var(--text-muted);">-</span></div>
+              <div><strong>Meta Description:</strong> <span id="meta-desc-val" style="color: var(--text-muted);">-</span></div>
+              <div><strong>Canonical URL:</strong> <span id="meta-canonical-val" style="color: var(--text-muted);">-</span></div>
+              <div><strong>Robots Directive:</strong> <span id="meta-robots-val" style="color: var(--text-muted);">-</span></div>
+              <div><strong>H1 Heading:</strong> <span id="meta-h1-val" style="color: var(--text-muted);">-</span></div>
+            </div>
+          </div>
+
+          <div>
+            <h4 style="color: var(--cyan); margin-bottom: 8px; font-size: 12px; text-transform: uppercase;">Audit Findings & Recommendations</h4>
+            <div id="crawl-issues-list" style="background: var(--bg-card); padding: 12px; border-radius: 6px; max-height: 240px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px;">
+              <!-- Dynamically populated issues -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. CONTENT AUDITOR TAB -->
+    <section id="tab-content" class="tab-content">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <!-- Left: Content Editor Input -->
+        <div class="card" style="margin-bottom: 0;">
+          <div class="card-title">Content Editor & Article Optimizer</div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div>
+              <label style="font-size: 11px; color: var(--text-muted); font-weight: 600;">Target Keyword</label>
+              <input type="text" id="content-target-kw" style="width: 100%;" value="autonomous marketing suite" placeholder="e.g. direct debit traps">
+            </div>
+
+            <div>
+              <label style="font-size: 11px; color: var(--text-muted); font-weight: 600;">SEO Title Tag (50-60 chars)</label>
+              <input type="text" id="content-title" style="width: 100%;" value="Autonomous Marketing Suite & Local Video Tools | Cali Media" oninput="runContentAudit()">
+            </div>
+
+            <div>
+              <label style="font-size: 11px; color: var(--text-muted); font-weight: 600;">Meta Description (120-155 chars)</label>
+              <textarea id="content-desc" style="width: 100%; height: 50px;" oninput="runContentAudit()">Discover Cali's autonomous marketing suite. Deploy independent native video creation, multi-domain SEO tracking, and local AI pipelines without external lock-in.</textarea>
+            </div>
+
+            <div>
+              <label style="font-size: 11px; color: var(--text-muted); font-weight: 600;">Article Body / Markdown Text</label>
+              <textarea id="content-body" style="width: 100%; height: 180px;" oninput="runContentAudit()"># Autonomous Marketing Suite for Modern Independent Brands
+
+Deploying an autonomous marketing suite gives your business full ownership over its media pipelines. Rather than paying recurring subscriptions for cloud timeline editors, modern teams run native local software.
+
+## Complete Data Sovereignty
+Our autonomous marketing suite operates directly on your local hardware. High-speed FFmpeg renderers, local neural voice models, and multi-domain search radars ensure uninterrupted publishing velocity.
+
+## Cross-Domain Publishing
+Whether managing consumer protection guides on call-on.dad or household budgeting on call-on.mom, all content is orchestrated autonomously without manual bottlenecks.</textarea>
+            </div>
+
+            <button class="btn btn-primary" onclick="runContentAudit()">⚡ Re-Calculate SEO Score</button>
+          </div>
+        </div>
+
+        <!-- Right: Real-time Analysis & SERP Preview -->
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <!-- Score Box -->
+          <div class="card" style="margin-bottom: 0;">
+            <div class="card-title">
+              <span>Optimization Score</span>
+              <span id="content-score-badge" style="font-size: 18px; font-weight: 700; color: var(--teal);">94 / 100</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+              <div style="background: var(--bg-card); padding: 8px 10px; border-radius: 4px;">
+                <div style="font-size: 10px; color: var(--text-muted);">KEYWORD DENSITY</div>
+                <div id="content-kw-density" style="font-size: 16px; font-weight: 700; color: var(--green);">1.8% (Optimal)</div>
+              </div>
+              <div style="background: var(--bg-card); padding: 8px 10px; border-radius: 4px;">
+                <div style="font-size: 10px; color: var(--text-muted);">READABILITY</div>
+                <div id="content-readability" style="font-size: 16px; font-weight: 700; color: var(--teal);">Standard (65.2)</div>
+              </div>
+            </div>
+
+            <div id="content-checks-list" style="display: flex; flex-direction: column; gap: 4px; max-height: 140px; overflow-y: auto;">
+              <!-- Dynamic check items -->
+            </div>
+          </div>
+
+          <!-- Google SERP Simulator Box -->
+          <div class="card" style="margin-bottom: 0;">
+            <div class="card-title">Google SERP Snippet Preview</div>
+            <div class="serp-box">
+              <div class="serp-url" id="serp-preview-url">https://cali-media.ltd › autonomous-marketing-suite</div>
+              <div class="serp-title" id="serp-preview-title">Autonomous Marketing Suite & Local Video Tools | Cali Media</div>
+              <div class="serp-snippet" id="serp-preview-desc">Discover Cali's autonomous marketing suite. Deploy independent native video creation, multi-domain SEO tracking, and local AI pipelines without external lock-in.</div>
+            </div>
+          </div>
+
+          <!-- Schema.org JSON-LD Output -->
+          <div class="card" style="margin-bottom: 0;">
+            <div class="card-title">Generated Schema.org JSON-LD</div>
+            <pre id="schema-json-output" style="background: var(--bg-input); padding: 10px; border-radius: 6px; font-size: 11px; max-height: 110px; overflow-y: auto; color: #a7f3d0;"></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. DOMAINS FLEET TAB -->
+    <section id="tab-domains" class="tab-content">
+      <div class="card">
+        <div class="card-title">
+          <span>Registered Domain Fleet (Multi-Domain Radar)</span>
+          <div style="display: flex; gap: 8px;">
+            <input type="text" id="new-domain-id" placeholder="e.g. call-on.info" style="width: 140px;">
+            <input type="text" id="new-domain-name" placeholder="Domain Title" style="width: 140px;">
+            <input type="text" id="new-domain-cat" placeholder="Category" style="width: 120px;">
+            <button class="btn btn-primary" onclick="addNewDomain()">+ Register Domain</button>
+          </div>
+        </div>
+
+        <table class="radar-table">
+          <thead>
+            <tr>
+              <th>Domain</th>
+              <th>Display Name</th>
+              <th>Category</th>
+              <th>Health Score</th>
+              <th>Tracked Keywords</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="domains-table-body">
+            <!-- Dynamically populated rows -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{
+  "project_id": "faceless_1794001825_diy_trades",
+  "format": "faceless_short",
+  "theme": "diy_trades",
+  "created_at": "2026-11-06 21:50:25",
+  "status": "RENDERED_READY_FOR_APPROVAL",
+  "topic": "Boiler Pressure Dropping in Sub-Zero Weather",
+  "character": {
+    "id": "trevor",
+    "name": "Trevor (Call-On Dad)",
+    "role": "Faceless Subject Specialist",
+    "brand_affinity": "call-on.dad",
+    "voice": "trevor",
+    "flow_prompt": "Faceless informative 9:16 vertical short about Boiler Pressure Dropping in Sub-Zero Weather."
+  },
+  "script": {
+    "topic": "Boiler Pressure Dropping in Sub-Zero Weather",
+    "character_id": "faceless",
+    "character_name": "Faceless DIY_TRADES",
+    "role": "Faceless Automated Short",
+    "hook": "Do NOT ignore boiler pressure dropping in sub-zero weather until you check this 60-second diagnostic.",
+    "body": "Most households spend hundreds on emergency callouts for issues that can be fixed safely in under 15 minutes. Check your isolation valves, verify system pressure between 1.0 and 1.5 bar, and clear frozen external lines before calling any contractor.",
+    "cta": "Download our complete step-by-step \u00a31.99 A4 print-off checklist on call-on.shop/guides/boiler-pressure-dropping-in-sub-zero-weather. Keep it printed by your appliance.",
+    "full_script": "Do NOT ignore boiler pressure dropping in sub-zero weather until you check this 60-second diagnostic. Most households spend hundreds on emergency callouts for issues that can be fixed safely in under 15 minutes. Check your isolation valves, verify system pressure between 1.0 and 1.5 bar, and clear frozen external lines before calling any contractor. Download our complete step-by-step \u00a31.99 A4 print-off checklist on call-on.shop/guides/boiler-pressure-dropping-in-sub-zero-weather. Keep it printed by your appliance.",
+    "word_count": 70,
+    "estimated_duration_sec": 32,
+    "brand_target": "call-on.dad",
+    "shop_link": "https://call-on.shop/guides/boiler-pressure-dropping-in-sub-zero-weather",
+    "guide_price": "\u00a31.99",
+    "theme": "diy_trades"
+  },
+  "guide": {
+    "title": "Call-On Dad Emergency Guide: Boiler Pressure Dropping in Sub-Zero Weather (DIY Diagnosis & Reset Checklist)",
+    "slug": "boiler-pressure-dropping-in-sub-zero-weather",
+    "price_gbp": 1.99,
+    "category": "Print-Off Guides & Toolkits",
+    "shop_url": "https://call-on.shop/guides/boiler-pressure-dropping-in-sub-zero-weather",
+    "local_shop_url": "http://127.0.0.1:8795/shop#boiler-pressure-dropping-in-sub-zero-weather",
+    "file_path": "d:/The Cali Project/sites/ct500/dad/guides/boiler-pressure-dropping-in-sub-zero-weather.html"
+  },
+  "rendered_video": {
+    "success": true,
+    "video_path": "D:/The Cali Project/apps/cali-video-studio/exports/trend_videos/faceless_1794001825_diy_trades.mp4",
+    "video_filename": "faceless_1794001825_diy_trades.mp4",
+    "stream_url": "http://127.0.0.1:8790/stream/exports/trend_videos/faceless_1794001825_diy_trades.mp4"
+  }
+}

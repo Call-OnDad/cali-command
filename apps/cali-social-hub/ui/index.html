@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cali Social Media & Publishing Hub</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="cali-sidekick.css">
+</head>
+<body>
+  <!-- TOP HEADER -->
+  <header class="top-header">
+    <div class="brand">
+      <span>📱</span> CALI <span>SOCIAL HUB</span>
+      <span style="font-size: 10px; color: var(--text-dim); border: 1px solid var(--border); padding: 1px 6px; border-radius: 4px; font-weight: normal;">OMNICHANNEL SUITE</span>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <a href="/" onclick="if(window.parent && window.parent.closeAppViewer){window.parent.closeAppViewer();return false;}" class="btn" style="text-decoration: none; color: var(--teal); font-size: 11px; padding: 4px 10px; border-color: var(--border);">
+        &larr; Central Hub (:8800)
+      </a>
+      <div class="agent-badge">
+        ✨ Agent: <strong>Echo (Gen 2)</strong>
+      </div>
+      <div style="font-size: 11px; color: var(--text-muted); background: var(--bg-card); padding: 4px 8px; border-radius: 4px; border: 1px solid var(--border);">
+        Port: <strong>8793</strong>
+      </div>
+    </div>
+  </header>
+
+  <!-- APP MAIN CONTAINER -->
+  <main class="app-container">
+
+    <!-- LEFT: COMPOSER PANEL -->
+    <section class="panel">
+      <div class="panel-title">
+        <span>✍️ Post Composer</span>
+        <button class="btn" style="padding: 2px 8px; font-size: 11px;" onclick="clearComposer()">Clear</button>
+      </div>
+
+      <!-- Target Brand -->
+      <label style="font-size: 11px; color: var(--text-muted); font-weight: 600; margin-bottom: 4px;">Target Brand</label>
+      <select id="composer-brand" style="margin-bottom: 12px;" onchange="onBrandChange()">
+        <option value="cali-media.ltd">🏢 Cali Media Group (cali-media.ltd)</option>
+        <option value="call-on.dad">🔧 Call On Dad (call-on.dad)</option>
+        <option value="call-on.mom">🏡 Call On Mom (call-on.mom)</option>
+        <option value="call-on.media">🎬 Call On Media (call-on.media)</option>
+        <option value="call-on.shop">🛍️ Call On Shop (call-on.shop)</option>
+      </select>
+
+      <!-- Target Network -->
+      <label style="font-size: 11px; color: var(--text-muted); font-weight: 600; margin-bottom: 4px;">Destination Network</label>
+      <div class="network-grid" id="network-selector">
+        <div class="network-pill selected" data-net="tiktok" onclick="selectNetwork('tiktok')">🎵 TikTok</div>
+        <div class="network-pill" data-net="youtube_posts" onclick="selectNetwork('youtube_posts')">▶️ YouTube</div>
+        <div class="network-pill" data-net="facebook" onclick="selectNetwork('facebook')">📘 Facebook</div>
+        <div class="network-pill" data-net="instagram" onclick="selectNetwork('instagram')">📷 Instagram</div>
+        <div class="network-pill" data-net="linkedin" onclick="selectNetwork('linkedin')">💼 LinkedIn</div>
+        <div class="network-pill" data-net="pinterest" onclick="selectNetwork('pinterest')">📌 Pinterest</div>
+        <div class="network-pill" data-net="bluesky" onclick="selectNetwork('bluesky')">🦋 Bluesky</div>
+        <div class="network-pill" data-net="mastodon" onclick="selectNetwork('mastodon')">🐘 Mastodon</div>
+        <div class="network-pill" data-net="tumblr" onclick="selectNetwork('tumblr')">🟣 Tumblr</div>
+      </div>
+
+      <!-- Caption -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+        <label style="font-size: 11px; color: var(--text-muted); font-weight: 600;">Caption Copy</label>
+        <span id="char-counter" style="font-family: monospace; font-size: 11px; color: var(--teal);">0 / 2,200</span>
+      </div>
+      <textarea id="composer-caption" style="height: 120px; margin-bottom: 8px;" placeholder="Write your post caption, hooks, and hashtags..." oninput="onCaptionInput()"></textarea>
+
+      <!-- Agent Optimization Notice -->
+      <div id="echo-warning-box" style="display: none; padding: 6px 8px; background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 4px; font-size: 11px; color: var(--yellow); margin-bottom: 10px;"></div>
+
+      <!-- Quick AI Hooks -->
+      <button class="btn" style="width: 100%; margin-bottom: 12px; justify-content: center;" onclick="generateEchoVariations()">
+        ✨ Ask Agent Echo for 3 Variations
+      </button>
+
+      <!-- Attach Rendered Video from Video Studio -->
+      <label style="font-size: 11px; color: var(--text-muted); font-weight: 600; margin-bottom: 4px;">🎬 Attach Rendered Video (Video Studio)</label>
+      <select id="composer-media" style="margin-bottom: 12px;">
+        <option value="">(None - Text Only)</option>
+      </select>
+
+      <!-- Schedule Time -->
+      <label style="font-size: 11px; color: var(--text-muted); font-weight: 600; margin-bottom: 4px;">Schedule Date & Time</label>
+      <input type="datetime-local" id="composer-time" style="margin-bottom: 14px;">
+
+      <!-- Actions -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+        <button class="btn btn-primary" onclick="submitPost('scheduled')">📅 Schedule Post</button>
+        <button class="btn btn-success" onclick="submitPost('publish_now')">⚡ Publish Now</button>
+      </div>
+    </section>
+
+    <!-- CENTER: QUEUE & CALENDAR FEED -->
+    <section class="panel" style="background: var(--bg-dark);">
+      <div class="panel-title">
+        <span>📋 Content Queue & Live Broadcasts</span>
+        <div style="display: flex; gap: 8px;">
+          <select id="filter-brand" style="font-size: 11px; padding: 2px 6px;" onchange="loadPosts()">
+            <option value="ALL">All Brands</option>
+            <option value="cali-media.ltd">Cali Media</option>
+            <option value="call-on.dad">Call On Dad</option>
+            <option value="call-on.mom">Call On Mom</option>
+            <option value="call-on.media">Call On Media</option>
+            <option value="call-on.shop">Call On Shop</option>
+          </select>
+          <select id="filter-status" style="font-size: 11px; padding: 2px 6px;" onchange="loadPosts()">
+            <option value="ALL">All Statuses</option>
+            <option value="scheduled">Scheduled</option>
+            <option value="published">Published</option>
+            <option value="draft">Drafts</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Feed Container -->
+      <div id="posts-feed" style="display: flex; flex-direction: column; gap: 10px;">
+        <!-- Dynamically rendered post cards -->
+      </div>
+    </section>
+
+    <!-- RIGHT: VIDEO STUDIO ASSET BIN & AGENT ECHO -->
+    <section class="panel">
+      <div class="panel-title">
+        <span>🎬 Video Studio Assets</span>
+        <button class="btn" style="padding: 2px 6px; font-size: 10px;" onclick="loadAssets()">Refresh</button>
+      </div>
+      <p style="font-size: 11px; color: var(--text-muted); margin-bottom: 12px; line-height: 1.4;">
+        Rendered clips from <code>apps/cali-video-studio/exports</code> ready for publishing.
+      </p>
+
+      <div id="assets-list" style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
+        <!-- Dynamically rendered video cards -->
+      </div>
+
+      <div class="card" style="margin-bottom: 0; background: var(--bg-card);">
+        <div style="font-size: 11px; font-weight: 700; color: var(--pink); text-transform: uppercase; margin-bottom: 6px;">
+          Agent Echo Brand Guidelines
+        </div>
+        <div id="echo-brand-guide" style="font-size: 11px; color: var(--text-muted); line-height: 1.4;">
+          <strong>Tone:</strong> Methodical, authoritative, autonomous media tools.
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- VIDEO PREVIEW MODAL -->
+  <div id="video-preview-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
+    <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; width: 440px; max-width: 95vw; padding: 16px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.6);">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-weight: 700; font-size: 13px; color: var(--teal);" id="preview-modal-title">🎬 Video Preview &amp; Approval</span>
+        <button class="btn" style="padding: 2px 8px; font-size: 12px;" onclick="closeVideoModal()">✕</button>
+      </div>
+      <div style="width: 100%; aspect-ratio: 9/16; max-height: 520px; background: #000; border-radius: 6px; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+        <video id="modal-video-player" controls playsinline style="width: 100%; height: 100%; object-fit: contain;"></video>
+      </div>
+      <div id="modal-shop-info" style="font-size: 11px; color: var(--text-muted); background: rgba(20,184,166,0.08); border: 1px solid rgba(20,184,166,0.2); padding: 8px; border-radius: 6px;"></div>
+      <div style="display: flex; gap: 8px; justify-content: flex-end;">
+        <button class="btn" onclick="closeVideoModal()">Close</button>
+        <button class="btn btn-success" id="modal-publish-btn" onclick="publishFromModal()">⚡ Approve &amp; Publish Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIVE PROOF RECEIPT MODAL -->
+  <div id="proof-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(4px);">
+    <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; width: 480px; max-width: 95vw; padding: 20px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 20px 40px rgba(0,0,0,0.6);">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-weight: 700; font-size: 13px; color: var(--green);">🛡️ Verified Broadcast Receipt</span>
+        <button class="btn" style="padding: 2px 8px; font-size: 12px;" onclick="closeProofModal()">✕</button>
+      </div>
+      <div id="proof-content" style="font-size: 12px; line-height: 1.6; color: var(--text-main);"></div>
+      <div style="display: flex; justify-content: flex-end;">
+        <button class="btn btn-primary" onclick="closeProofModal()">Close Receipt</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="cali-sidekick.js"></script>
+</body>
+</html>

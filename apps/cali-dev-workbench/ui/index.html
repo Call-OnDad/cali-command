@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cali Dev & Code Release Workbench | Department Module</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Top Header -->
+    <header class="header">
+      <div class="brand">
+        <div class="logo-orb">⚡</div>
+        <div class="brand-text">
+          <h1>Cali Dev &amp; Code Release Workbench</h1>
+          <span class="subtext">Git Working Tree &bull; Secret Leak Shield &bull; Hotfix Patch Approver &bull; Port 8792</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="branch-pill" id="branchPill">
+          <span class="icon">🌿</span>
+          <span class="branch-name" id="branchName">master</span>
+        </div>
+        <div class="status-pill status-clean" id="repoStatusPill">
+          <span class="pulse-dot"></span>
+          <span id="repoStatusText">Checking Git...</span>
+        </div>
+        <a href="/" onclick="if(window.parent && window.parent.closeAppViewer){window.parent.closeAppViewer();return false;}" class="btn btn-secondary btn-sm" target="_blank" title="Return to Central Command Hub">
+          <span>&larr; Central Hub (:8800)</span>
+        </a>
+        <button id="refreshBtn" class="btn btn-primary btn-sm" onclick="fetchDevData()">
+          <span class="icon">🔄</span> Refresh
+        </button>
+      </div>
+    </header>
+
+    <!-- KPI Strip -->
+    <section class="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-icon">📁</div>
+        <div class="kpi-body">
+          <span class="kpi-label">Dirty / Modified Files</span>
+          <div class="kpi-value" id="kpiModified">0</div>
+          <span class="kpi-foot" id="kpiUntracked">0 untracked files</span>
+        </div>
+      </div>
+      <div class="kpi-card" id="kpiLeakCard">
+        <div class="kpi-icon">🛡️</div>
+        <div class="kpi-body">
+          <span class="kpi-label">Secret &amp; Key Leaks</span>
+          <div class="kpi-value value-emerald" id="kpiLeaks">0</div>
+          <span class="kpi-foot" id="kpiLeakStatus">Live Shield Active</span>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">📜</div>
+        <div class="kpi-body">
+          <span class="kpi-label">Patch Proposals</span>
+          <div class="kpi-value" id="kpiPatches">0</div>
+          <span class="kpi-foot" id="kpiPendingPatches">0 pending review</span>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">🚀</div>
+        <div class="kpi-body">
+          <span class="kpi-label">Deployment Receipts</span>
+          <div class="kpi-value" id="kpiReceipts">0</div>
+          <span class="kpi-foot" id="kpiLastReceipt">All hotfixes logged</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="nav-tab active" data-tab="tab-git" onclick="switchTab('tab-git')">
+        <span class="tab-icon">🌿</span> Git Working Tree &amp; Diff
+      </button>
+      <button class="nav-tab" data-tab="tab-patches" onclick="switchTab('tab-patches')">
+        <span class="tab-icon">📝</span> Patch Review Queue
+        <span class="badge" id="tabPatchBadge">0</span>
+      </button>
+      <button class="nav-tab" data-tab="tab-shield" onclick="switchTab('tab-shield')">
+        <span class="tab-icon">🛡️</span> Credential Leak Shield
+      </button>
+      <button class="nav-tab" data-tab="tab-receipts" onclick="switchTab('tab-receipts')">
+        <span class="tab-icon">📜</span> Deployment Receipts
+      </button>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="main-content">
+      <!-- Tab 1: Git Working Tree & Diff Viewer -->
+      <section id="tab-git" class="tab-pane active">
+        <div class="git-grid">
+          <!-- Left Column: File Tree & Recent Commits -->
+          <div class="git-sidebar">
+            <div class="panel">
+              <div class="panel-header">
+                <h3>Modified Working Tree</h3>
+                <span class="panel-badge" id="modifiedCountBadge">0 files</span>
+              </div>
+              <div class="file-list" id="modifiedFileList">
+                <div class="empty-state">Loading working tree...</div>
+              </div>
+            </div>
+
+            <div class="panel" style="margin-top: 1rem;">
+              <div class="panel-header">
+                <h3>Recent Git Commits</h3>
+                <span class="panel-badge">master</span>
+              </div>
+              <div class="commit-list" id="recentCommitList">
+                <div class="empty-state">Loading commits...</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Unified Diff Viewer -->
+          <div class="git-main">
+            <div class="panel diff-panel">
+              <div class="panel-header">
+                <div>
+                  <h3 id="currentDiffTitle">Unified Diff Viewer</h3>
+                  <span class="subtext-mono" id="currentDiffFile">Select a file from the left to inspect uncommitted changes</span>
+                </div>
+                <div class="diff-actions">
+                  <button class="btn btn-secondary btn-sm" onclick="loadDiff(null)">
+                    <span>Tree-Wide Diff</span>
+                  </button>
+                  <button class="btn btn-warning btn-sm" onclick="openNewPatchModal()">
+                    <span>+ Propose Patch</span>
+                  </button>
+                </div>
+              </div>
+              <div class="diff-viewer-wrapper">
+                <pre class="diff-viewer" id="diffContent"><code>// Select a file to inspect diff...</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab 2: Patch Review Queue -->
+      <section id="tab-patches" class="tab-pane">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h3>Automated &amp; Agent Hotfix Queue</h3>
+              <p class="subtext">Review safe code patches proposed by Cali or the agent before applying directly to disk</p>
+            </div>
+            <button class="btn btn-primary" onclick="openNewPatchModal()">
+              <span>+ New Patch Proposal</span>
+            </button>
+          </div>
+
+          <div class="patches-container" id="patchesContainer">
+            <div class="empty-state">Loading patch proposals...</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab 3: Credential Leak Shield -->
+      <section id="tab-shield" class="tab-pane">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h3>Pre-Commit Credential Leak Shield</h3>
+              <p class="subtext">Deep-scans working files for live API keys, Stripe secrets, Groq keys, Proxmox tokens, and private keys</p>
+            </div>
+            <button class="btn btn-secondary" onclick="scanSecrets()">
+              <span>🔍 Run Deep Scan Now</span>
+            </button>
+          </div>
+
+          <div class="shield-status-box" id="shieldStatusBox">
+            <div class="shield-indicator" id="shieldIcon">🛡️</div>
+            <div>
+              <h4 id="shieldHeading">Scanning Working Tree...</h4>
+              <p id="shieldDetail">Checking modified source files against secret regex signatures.</p>
+            </div>
+          </div>
+
+          <div class="table-container" style="margin-top: 1.5rem;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Status</th>
+                  <th>File</th>
+                  <th>Line</th>
+                  <th>Signature Type</th>
+                  <th>Code Preview</th>
+                </tr>
+              </thead>
+              <tbody id="leakTableBody">
+                <tr><td colspan="5" class="empty-state">No leaks detected. Source tree is clean.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab 4: Deployment Receipts -->
+      <section id="tab-receipts" class="tab-pane">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h3>Deployment &amp; Hotfix Receipts Ledger</h3>
+              <p class="subtext">Cryptographically verifiable execution receipts for all code changes and automated patches</p>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="fetchReceipts()">
+              <span>🔄 Refresh Receipts</span>
+            </button>
+          </div>
+
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Release Tag</th>
+                  <th>Action</th>
+                  <th>Target File</th>
+                  <th>Status</th>
+                  <th>Details</th>
+                  <th>Timestamp</th>
+                </tr>
+              </thead>
+              <tbody id="receiptsTableBody">
+                <tr><td colspan="7" class="empty-state">No receipts found.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal: Propose New Patch -->
+    <div class="modal-overlay" id="patchModal" style="display: none;">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Propose Safe Code Patch</h3>
+          <button class="close-btn" onclick="closeNewPatchModal()">&times;</button>
+        </div>
+        <form id="patchForm" onsubmit="submitPatchProposal(event)">
+          <div class="form-group">
+            <label>Target File Path (Relative to Repo Root)</label>
+            <input type="text" id="patchFilePath" placeholder="e.g. server/cali_llm_config.py" required class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Patch Description / Reason</label>
+            <input type="text" id="patchDescription" placeholder="e.g. Fix model fallback on zero credits" required class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Existing Code Snippet (Must match exactly)</label>
+            <textarea id="patchOldText" rows="4" placeholder="Exact string in file to be replaced" required class="form-control mono-input"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Replacement Code Snippet</label>
+            <textarea id="patchNewText" rows="4" placeholder="New string to replace old code" required class="form-control mono-input"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="closeNewPatchModal()">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit for Review</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,48 @@
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.token
+
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+
+# Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Large Model Weights & Embeddings
+*.onnx
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.ckpt
+speaker-identity.pt
+locked_voices/
+
+# User Data, Databases & Logs
+*.log
+*.db
+*.sqlite
+*.sqlite3
+data/
+exports/
+temp/
+tmp/
+*.mp4
+*.wav
+*.mp3
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

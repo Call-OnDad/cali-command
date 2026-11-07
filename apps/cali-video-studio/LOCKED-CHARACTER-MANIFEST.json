@@ -1,0 +1,121 @@
+{
+  "status": "PERMANENTLY LOCKED & APPROVED",
+  "approved_by": "Antony",
+  "updated": "2026-11-06",
+  "scope": "Universal 1-to-1 Character Voice + Image Pairings across Cali Video Studio, Web, and Flow",
+  "rule": "1 Character = 1 Locked Voice = 1 Locked Image. No re-auditioning, no candidate picking.",
+  "characters": {
+    "cali": {
+      "name": "Cali",
+      "role": "Command Lead & Core Platform Intelligence",
+      "status": "LOCKED",
+      "voice": {
+        "file": "cali.mp3",
+        "approved_take": "Jenny Dioco Medium Master (1.0x)",
+        "speed": 1.0,
+        "audio_path": "locked_voices/cali.mp3"
+      },
+      "image": {
+        "render_path": "d:/The Cali Project/apps/cali-video-studio/locked_images/renders/cali.png",
+        "portrait_path": "d:/The Cali Project/apps/cali-video-studio/locked_images/portraits/cali.webp",
+        "web_url": "/assets/characters/crew/cali.webp"
+      }
+    },
+    "arthur": {
+      "name": "Arthur Auditor",
+      "role": "Methodical Auditor / Consumer Protection & Tenancy",
+      "status": "LOCKED",
+      "voice": {
+        "file": "arthur.mp3",
+        "approved_take": "Arthur Natural (0.93x)",
+        "speed": 0.93,
+        "audio_path": "locked_voices/arthur.mp3"
+      },
+      "image": {
+        "render_path": "d:/The Cali Project/apps/cali-video-studio/locked_images/renders/arthur.png",
+        "portrait_path": "d:/The Cali Project/apps/cali-video-studio/locked_images/portraits/arthur.webp",
+        "web_url": "/assets/characters/crew/arthur.webp"
+      }
+    },
+    "hilda": {
+      "name": "Hilda",
+      "role": "Community, Family Care, Everyday Health & Domestic Ops",
+      "status": "LOCKED",
+      "voice": {
+        "file": "hilda.mp3",
+        "approved_take": "Antony's late mum's voice (sacred permanent reference)",
+        "speed": 0.85,
+        "audio_path": "locked_voices/hilda.mp3"
+      },
+      "image": {
+        "render_path": "d:/The Cali Project/apps/cali-video-studio/locked_images/renders/hilda.png",
+        "portrait_path": "d:/The Cali Project/apps/cali-video-studio/locked_images/portraits/hilda.webp",
+        "web_url": "/assets/characters/crew/hilda.webp"
+      }
+    },
+    "trevor": {
+      "name": "Trevor",
+      "role": "Handyman, DIY Fixes, Tradesmen Advice & Car Maintenance",
+      "status": "LOCKED",
+      "voice": {
+        "file": "trevor.mp3",
+        "approved_take": "Audition Take 2",
+        "speed": 1.0,
+        "audio_path": "locked_voices/trevor.mp3"
+      },
+      "image": {
+        "render_path": "d:/The Cali Project/apps/cali-video-studio/locked_images/renders/trevor.png",
+        "portrait_path": "d:/The Cali Project/apps/cali-video-studio/locked_images/portraits/trevor.webp",
+        "web_url": "/assets/characters/crew/trevor.webp"
+      }
+    },
+    "dexter": {
+      "name": "Dexter",
+      "role": "Creative Director, Software Dev, Tech Safety & Anti-Scam",
+      "status": "LOCKED",
+      "voice": {
+        "file": "dexter.mp3",
+        "approved_take": "Audition Take 3",
+        "speed": 1.06,
+        "audio_path": "locked_voices/dexter.mp3"
+      },
+      "image": {
+        "render_path": "d:/The Cali Project/apps/cali-video-studio/locked_images/renders/dexter.png",
+        "portrait_path": "d:/The Cali Project/apps/cali-video-studio/locked_images/portraits/dexter.webp",
+        "web_url": "/assets/characters/crew/dexter.webp"
+      }
+    },
+    "odin": {
+      "name": "Odin",
+      "role": "Chief Dog Officer, Quality Overseer, Pet Safety & Family Fun",
+      "status": "LOCKED",
+      "voice": {
+        "file": "odin.mp3",
+        "approved_take": "Odin Michael Approved Take",
+        "speed": 0.96,
+        "audio_path": "locked_voices/odin.mp3"
+      },
+      "image": {
+        "render_path": "d:/The Cali Project/apps/cali-video-studio/locked_images/renders/odin.png",
+        "portrait_path": "d:/The Cali Project/apps/cali-video-studio/locked_images/portraits/odin.webp",
+        "web_url": "/assets/characters/crew/odin.webp"
+      }
+    },
+    "the_director": {
+      "name": "The Director (Antony)",
+      "role": "Executive Vision, Founder Announcements & Strategy",
+      "status": "LOCKED",
+      "voice": {
+        "file": "the-director.mp3",
+        "approved_take": "Antony Clone Master (director-full-reference)",
+        "speed": 0.92,
+        "audio_path": "locked_voices/the-director.mp3"
+      },
+      "image": {
+        "render_path": "d:/The Cali Project/apps/cali-video-studio/locked_images/renders/the_director.png",
+        "portrait_path": "d:/The Cali Project/apps/cali-video-studio/locked_images/portraits/the_director.webp",
+        "web_url": "/assets/characters/crew/the_director.webp"
+      }
+    }
+  }
+}

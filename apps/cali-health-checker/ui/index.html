@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cali Website Health Checker & Deep Dive Audit Scanner (Port 8796)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="cali-sidekick.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="top-header">
+    <div class="brand">
+      <span class="icon">🏥</span>
+      <div class="brand-text">
+        <div class="title">CALI <span>WEBSITE HEALTH CHECKER &amp; DEEP SCANNER</span></div>
+        <div class="sub">AGENT VIGIL (GEN 2) · PORT 8796 · PASSIVE CLIENT AUDITOR</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <a href="/" onclick="if(window.parent && window.parent.closeAppViewer){window.parent.closeAppViewer();return false;}" class="btn btn-secondary">&larr; Central Hub (:8800)</a>
+      <a href="http://127.0.0.1:8789" class="btn btn-accent">🌐 Website Creator &amp; Mockups (:8789) ↗</a>
+      <button class="btn btn-primary" onclick="runCheck()">🔄 Refresh Uptime</button>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <!-- 1. DEEP DIVE CLIENT WEBSITE AUDIT SCANNER (HERO CARD) -->
+    <section class="card scanner-card">
+      <div class="scanner-header">
+        <div>
+          <span class="badge-accent">DEEP DIVE DIAGNOSTIC PASS</span>
+          <h2 class="scanner-title">🔍 Scan Any Website for Health, Security &amp; Mobile Readiness</h2>
+          <p class="scanner-sub">Enter any client or prospect domain (e.g. <code>prospect-site.co.uk</code> or <code>call-on.dad</code>) to audit SSL expiration, DNS latency, HTTP security headers, mobile viewport tags, and auto-generate an outreach pitch.</p>
+        </div>
+      </div>
+
+      <!-- Scan Input Bar -->
+      <form id="audit-form" class="scan-bar">
+        <div class="scan-input-wrapper">
+          <span class="scan-icon">🌐</span>
+          <input type="text" id="target-domain" class="scan-input" placeholder="Enter website domain or full URL (e.g. call-on.dad, apexplumbing.co.uk)..." required>
+        </div>
+        <button type="submit" id="btn-scan" class="btn btn-scan">🚀 Run Deep Dive Audit</button>
+      </form>
+
+      <!-- Quick Scan Presets -->
+      <div class="quick-chips">
+        <span class="chips-label">Quick Scan Our Core Fleet:</span>
+        <button type="button" class="chip" onclick="quickScan('call-on.dad')">call-on.dad</button>
+        <button type="button" class="chip" onclick="quickScan('call-on.mom')">call-on.mom</button>
+        <button type="button" class="chip" onclick="quickScan('call-on.shop')">call-on.shop</button>
+        <button type="button" class="chip" onclick="quickScan('call-on.media')">call-on.media</button>
+        <button type="button" class="chip" onclick="quickScan('docs.call-on.media')">docs.call-on.media</button>
+      </div>
+
+      <!-- Scanning Loading State -->
+      <div id="scan-loading" class="scan-loading hidden">
+        <div class="spinner"></div>
+        <div class="loading-text">
+          <strong>Running Passive Diagnostic Pass...</strong>
+          <span id="scan-step">Checking DNS resolution, verifying SSL handshake, inspecting HTTP headers &amp; mobile viewport tags...</span>
+        </div>
+      </div>
+
+      <!-- Deep Dive Audit Results Area -->
+      <div id="audit-result" class="audit-result hidden">
+        <div class="audit-summary-bar">
+          <div class="score-badge-box" id="score-badge">
+            <span class="score-grade" id="res-grade">A</span>
+            <div class="score-meta">
+              <span class="score-num"><span id="res-score">95</span> / 100</span>
+              <span class="score-label">HEALTH SCORE</span>
+            </div>
+          </div>
+          
+          <div class="audit-target-info">
+            <div class="target-domain-title" id="res-domain">call-on.dad</div>
+            <div class="target-meta-line" id="res-ip-meta">IP: 149.248.59.88 · Latency: 42ms · Audited: Just Now</div>
+          </div>
+
+          <div class="audit-actions">
+            <button class="btn btn-secondary" onclick="copyPitch()">📋 Copy Client Pitch</button>
+            <a href="http://127.0.0.1:8789" target="_blank" class="btn btn-primary">🛠️ Build Mockup in Creator (:8789) ↗</a>
+          </div>
+        </div>
+
+        <!-- 4 Telemetry Diagnostic Cards -->
+        <div class="telemetry-grid">
+          <div class="diag-card">
+            <div class="diag-label">🔒 SSL/TLS Certificate</div>
+            <div class="diag-val" id="res-ssl-val">Valid (68 Days)</div>
+            <div class="diag-sub" id="res-ssl-sub">Issuer: Let's Encrypt</div>
+          </div>
+          <div class="diag-card">
+            <div class="diag-label">🌐 DNS &amp; Network</div>
+            <div class="diag-val" id="res-dns-val">Resolved OK</div>
+            <div class="diag-sub" id="res-dns-sub">Latency: 38 ms</div>
+          </div>
+          <div class="diag-card">
+            <div class="diag-label">🛡️ Security Headers</div>
+            <div class="diag-val" id="res-sec-val">Grade A</div>
+            <div class="diag-sub" id="res-sec-sub">HSTS, CSP Verified</div>
+          </div>
+          <div class="diag-card">
+            <div class="diag-label">📱 Mobile &amp; Viewport</div>
+            <div class="diag-val" id="res-mob-val">Responsive</div>
+            <div class="diag-sub" id="res-mob-sub">Viewport Meta Present</div>
+          </div>
+        </div>
+
+        <!-- Detailed Findings & Issues List -->
+        <div class="findings-box">
+          <div class="box-title">📋 Diagnostic Findings &amp; Opportunities</div>
+          <div id="findings-list" class="findings-list"></div>
+        </div>
+
+        <!-- Auto-Generated Client Pitch Script -->
+        <div class="pitch-box">
+          <div class="box-title-row">
+            <span class="box-title">📢 Automated Outreach Script for this Client Site</span>
+            <button class="btn-copy-sm" onclick="copyPitch()">Copy Outreach Script</button>
+          </div>
+          <pre id="res-pitch" class="pitch-code"></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. FLEET HEALTH & UPTIME METRICS -->
+    <section class="stats-row" id="stats-row"></section>
+
+    <!-- 3. MONITORED DOMAINS TABLE -->
+    <div class="card">
+      <div class="card-header-row">
+        <h3>🌐 Core Monitored Fleet (Uptime &amp; TLS Expiry)</h3>
+        <span class="status-pill">● 5/5 ONLINE</span>
+      </div>
+      <div id="domains-table" class="domains-list"></div>
+    </div>
+
+    <!-- 4. OVERWATCH REVIEW QUEUE -->
+    <div class="card">
+      <h3>🛡️ Overwatch Review Centre Dispositions</h3>
+      <div id="review-content" class="review-box"></div>
+    </div>
+  </main>
+
+  <div id="toast" class="toast hidden">Copied to clipboard!</div>
+
+  <script src="app.js"></script>
+  <script src="cali-sidekick.js"></script>
+</body>
+</html>

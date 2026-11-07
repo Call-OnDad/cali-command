@@ -1,0 +1,55 @@
+:root {
+  --bg-dark: #0a0e17;
+  --bg-panel: #111827;
+  --bg-card: #1f2937;
+  --border: #374151;
+  --blue: #3b82f6;
+  --teal: #14b8a6;
+  --text-main: #f3f4f6;
+  --text-muted: #9ca3af;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+body { background: var(--bg-dark); color: var(--text-main); font-size: 13px; min-height: 100vh; }
+.top-header { height: 56px; background: var(--bg-panel); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; }
+.brand span { color: var(--blue); }
+.badge { font-size: 10px; background: rgba(59, 130, 246, 0.15); color: var(--blue); padding: 2px 8px; border-radius: 12px; border: 1px solid rgba(59, 130, 246, 0.3); }
+
+.container { padding: 20px; max-width: 1300px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+.stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.stat-card { background: var(--bg-panel); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+.stat-val { font-size: 22px; font-weight: 800; color: var(--blue); margin-top: 4px; }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.card { background: var(--bg-panel); border: 1px solid var(--border); border-radius: 8px; padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+.card h3 { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.sites-list { display: flex; flex-direction: column; gap: 10px; }
+.site-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; }
+.site-top { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 4px; }
+
+.products-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.prod-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 12px; display: flex; flex-direction: column; gap: 6px; }
+.prod-price { font-weight: 700; color: var(--teal); font-size: 14px; }
+
+/* Guides Styling */
+.guides-section { display: flex; flex-direction: column; gap: 16px; }
+.guides-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+.guide-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; transition: transform 0.15s, border-color 0.15s; }
+.guide-card:hover { border-color: var(--teal); transform: translateY(-2px); }
+.guide-card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.guide-title { font-weight: 700; font-size: 13px; line-height: 1.4; color: #fff; }
+.guide-badge { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; white-space: nowrap; }
+.badge-printoff { background: rgba(20, 184, 166, 0.2); color: var(--teal); border: 1px solid rgba(20, 184, 166, 0.4); }
+.badge-free { background: rgba(59, 130, 246, 0.2); color: var(--blue); border: 1px solid rgba(59, 130, 246, 0.4); }
+.guide-meta { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
+.guide-actions { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 6px; }
+.guide-link-btn { font-size: 11px; font-weight: 600; text-decoration: none; padding: 5px 10px; border-radius: 5px; display: inline-flex; align-items: center; gap: 4px; border: 1px solid var(--border); background: #111827; color: var(--text-main); }
+.guide-link-btn:hover { background: #1e293b; color: #fff; border-color: var(--teal); }
+.guide-link-btn.primary { background: var(--teal); color: #0f172a; border: none; font-weight: 700; }
+.guide-link-btn.primary:hover { background: #2dd4bf; }
+
+.btn { background: var(--bg-card); color: #fff; border: 1px solid var(--border); padding: 7px 14px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; }
+.btn-primary { background: var(--blue); color: #fff; border: none; }
+

@@ -1,0 +1,144 @@
+{
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8790
+  },
+  "paths": {
+    "media_library": "D:/Cali-media-ltd/Local-video-studio",
+    "videos_dir": "D:/Cali-media-ltd/Local-video-studio/Videos",
+    "images_dir": "D:/Cali-media-ltd/Local-video-studio/Images",
+    "templates_dir": "D:/Cali-media-ltd/Local-video-studio/04-Templates",
+    "voices_meta": "D:/Cali-media-ltd/Local-video-studio/05-Voices/LOCAL-VOICE-SELECTIONS.json",
+    "models_dir": "models",
+    "projects_dir": "projects",
+    "exports_dir": "exports",
+    "colab_sync_dir": "D:/Tools/colab-cli/render_staging"
+  },
+  "audio": {
+    "piper_binary": "piper",
+    "use_cuda": false,
+    "loudness_target": {
+      "I": -16.0,
+      "TP": -1.5,
+      "LRA": 11.0
+    },
+    "default_voice": "cali",
+    "voices": {
+      "cali": {
+        "name": "Cali (Approved)",
+        "model_path": "models/cali.onnx",
+        "description": "Cali official assistant voice"
+      },
+      "jenny": {
+        "name": "Jenny (Approved British)",
+        "model_path": "models/jenny.onnx",
+        "description": "High fidelity British female voice"
+      },
+      "northern": {
+        "name": "Northern English (Male)",
+        "model_path": "models/northern.onnx",
+        "description": "Warm northern accent narrator"
+      },
+      "cori": {
+        "name": "Cori (British Female)",
+        "model_path": "models/cori.onnx",
+        "description": "Clear instructional narrator"
+      },
+      "alan": {
+        "name": "Alan (Historical British)",
+        "model_path": "models/en_GB-alan-medium.onnx",
+        "description": "Alan narrator"
+      }
+    }
+  },
+  "video": {
+    "nvenc_enabled": true,
+    "default_format": "9:16",
+    "formats": {
+      "9:16": {
+        "width": 1080,
+        "height": 1920,
+        "label": "Vertical Short / Reel / TikTok"
+      },
+      "16:9": {
+        "width": 1920,
+        "height": 1080,
+        "label": "Horizontal YouTube / Web HD"
+      }
+    },
+    "fps": 30,
+    "bumper": {
+      "enabled": true,
+      "duration": 3.0,
+      "background": "#0d2130",
+      "tagline": "Cali Media \u00b7 Intelligent Systems"
+    }
+  },
+  "omni": {
+    "enabled": true,
+    "api_endpoint": "https://api.omni.ai/v1/generate",
+    "api_key": ""
+  },
+  "colab": {
+    "enabled": true,
+    "batch_manifest_dir": "projects/colab_manifests"
+  },
+  "characters": {
+    "cali": {
+      "name": "Cali",
+      "role": "Command Lead & Platform Intelligence",
+      "voice_file": "locked_voices/cali.mp3",
+      "model_path": "models/cali.onnx",
+      "render_frame": "locked_images/renders/cali.png",
+      "portrait": "locked_images/portraits/cali.webp"
+    },
+    "arthur": {
+      "name": "Arthur Auditor",
+      "role": "Methodical Auditor & Housing",
+      "voice_file": "locked_voices/arthur.mp3",
+      "model_path": "models/arthur.onnx",
+      "render_frame": "locked_images/renders/arthur.png",
+      "portrait": "locked_images/portraits/arthur.webp"
+    },
+    "hilda": {
+      "name": "Hilda",
+      "role": "Community & Domestic Operations",
+      "voice_file": "locked_voices/hilda.mp3",
+      "model_path": "models/hilda.onnx",
+      "render_frame": "locked_images/renders/hilda.png",
+      "portrait": "locked_images/portraits/hilda.webp"
+    },
+    "trevor": {
+      "name": "Trevor",
+      "role": "Technical Maintenance & Tradesmen",
+      "voice_file": "locked_voices/trevor.mp3",
+      "model_path": "models/northern.onnx",
+      "render_frame": "locked_images/renders/trevor.png",
+      "portrait": "locked_images/portraits/trevor.webp"
+    },
+    "dexter": {
+      "name": "Dexter",
+      "role": "Creative Director & Tech Safety",
+      "voice_file": "locked_voices/dexter.mp3",
+      "model_path": "models/dexter.onnx",
+      "render_frame": "locked_images/renders/dexter.png",
+      "portrait": "locked_images/portraits/dexter.webp"
+    },
+    "odin": {
+      "name": "Odin",
+      "role": "Chief Dog Officer & Mascot",
+      "voice_file": "locked_voices/odin.mp3",
+      "model_path": "models/odin.onnx",
+      "render_frame": "locked_images/renders/odin.png",
+      "portrait": "locked_images/portraits/odin.webp"
+    },
+    "the_director": {
+      "name": "The Director (Antony)",
+      "role": "Executive Vision & Strategy",
+      "voice_file": "locked_voices/the-director.mp3",
+      "model_path": "models/director.onnx",
+      "render_frame": "locked_images/renders/the_director.png",
+      "portrait": "locked_images/portraits/the_director.webp"
+    }
+  }
+}

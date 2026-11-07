@@ -1,0 +1,24 @@
+{
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8797
+  },
+  "agent": {
+    "name": "Aegis",
+    "role": "Defensive Security & Pentest Radar Specialist",
+    "generation": 2,
+    "philosophy": "Continuous surface reconnaissance. Zero exposed credentials, automated threat blocking."
+  },
+  "infrastructure": {
+    "proxmox_host": "192.168.0.10",
+    "pbs_host": "192.168.0.10",
+    "cloud_flare_dns": "active"
+  },
+  "target_domains": [
+    "cali-media.ltd",
+    "call-on.media",
+    "call-on.dad",
+    "call-on.mom",
+    "call-on.shop"
+  ]
+}

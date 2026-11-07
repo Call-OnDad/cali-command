@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cali Commercial & Finance Ledger | Cali Media Ltd</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- MASTER TOP NAV -->
+  <header class="top-nav">
+    <div class="nav-left">
+      <div class="logo-badge">💷</div>
+      <div class="nav-title">
+        <h1>Commercial & Finance Ledger</h1>
+        <small>CALI MEDIA LTD (Co. #17373615) · E-Commerce Margins, Expenses & Client Invoicing</small>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="api/finance/export/csv" class="btn btn-secondary">📥 Export CSV for Tax</a>
+      <button class="btn btn-secondary" onclick="openModal('modal-expense')">+ Add Expense</button>
+      <button class="btn btn-primary" onclick="openModal('modal-invoice')">+ Create Client Invoice 📄</button>
+      <a href="/" class="btn btn-back">← Back to Cali Hub</a>
+    </div>
+  </header>
+
+  <main class="ledger-container">
+
+    <!-- FINANCIAL KPI STRIP -->
+    <section class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-icon">📈</div>
+        <div class="kpi-content">
+          <span class="kpi-label">GROSS REVENUE (YTD)</span>
+          <strong class="kpi-val" id="kpi-gross-rev">£0.00</strong>
+          <small class="kpi-sub">Shop & Agency Services</small>
+        </div>
+        <span class="kpi-tag tag-green">REVENUE</span>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-icon">📉</div>
+        <div class="kpi-content">
+          <span class="kpi-label">MONTHLY OVERHEAD</span>
+          <strong class="kpi-val" id="kpi-monthly-exp">£0.00</strong>
+          <small class="kpi-sub">Domains & Server Power</small>
+        </div>
+        <span class="kpi-tag tag-yellow">FIXED COSTS</span>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-icon">💰</div>
+        <div class="kpi-content">
+          <span class="kpi-label">NET PROFIT</span>
+          <strong class="kpi-val" id="kpi-net-profit">£0.00</strong>
+          <small class="kpi-sub" id="kpi-margin-pct">Margin: 0%</small>
+        </div>
+        <span class="kpi-tag tag-teal">NET INCOME</span>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-icon">🏛️</div>
+        <div class="kpi-content">
+          <span class="kpi-label">CORP TAX ACCRUAL (19%)</span>
+          <strong class="kpi-val" id="kpi-corp-tax">£0.00</strong>
+          <small class="kpi-sub">HMRC Small Business Rate</small>
+        </div>
+        <span class="kpi-tag tag-blue">TAX RESERVE</span>
+      </div>
+    </section>
+
+    <!-- SECTION NAVIGATION TABS -->
+    <div class="tabs-bar">
+      <button class="tab-btn active" onclick="switchTab('margins')">🛍️ Product Profit Margins (Printful)</button>
+      <button class="tab-btn" onclick="switchTab('expenses')">📋 Monthly Operating Overhead</button>
+      <button class="tab-btn" onclick="switchTab('invoices')">📄 Client Invoices & Quotes</button>
+      <button class="tab-btn" onclick="switchTab('compliance')">🏛️ Companies House Compliance</button>
+    </div>
+
+    <!-- TAB 1: PRODUCT PROFIT MARGINS -->
+    <section class="tab-pane active" id="pane-margins">
+      <div class="pane-header">
+        <div>
+          <h2>E-Commerce Merchandise Profit Margins</h2>
+          <small>Live catalog synchronized with Printful Store #18266176 (Call-On Shop)</small>
+        </div>
+        <button class="btn btn-secondary" onclick="loadMargins(true)">🔄 Sync Catalog Now</button>
+      </div>
+
+      <div class="table-card">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Product Title</th>
+              <th>Retail Price</th>
+              <th>Base Print Cost</th>
+              <th>Net Profit / Unit</th>
+              <th>Margin %</th>
+              <th>Fulfillment</th>
+            </tr>
+          </thead>
+          <tbody id="margins-table-body">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TAB 2: OPERATING EXPENSES -->
+    <section class="tab-pane" id="pane-expenses">
+      <div class="pane-header">
+        <div>
+          <h2>Recurring Operating Expenses & Infrastructure Overhead</h2>
+          <small>Domains, server electricity, offsite backup storage, and software services</small>
+        </div>
+        <button class="btn btn-primary" onclick="openModal('modal-expense')">+ Add Operating Expense</button>
+      </div>
+
+      <div class="table-card">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Vendor / Service</th>
+              <th>Cost (£)</th>
+              <th>Recurrence</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="expenses-table-body">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TAB 3: CLIENT INVOICING -->
+    <section class="tab-pane" id="pane-invoices">
+      <div class="pane-header">
+        <div>
+          <h2>Client Invoices & Pre-Sales Quotes</h2>
+          <small>Create and print professional UK business invoices branded with Cali Media Ltd (Co. #17373615)</small>
+        </div>
+        <button class="btn btn-primary" onclick="openModal('modal-invoice')">+ Create Client Invoice 📄</button>
+      </div>
+
+      <div class="table-card">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Invoice #</th>
+              <th>Client / Company</th>
+              <th>Issue Date</th>
+              <th>Due Date</th>
+              <th>Total (£)</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="invoices-table-body">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- TAB 4: COMPANIES HOUSE COMPLIANCE -->
+    <section class="tab-pane" id="pane-compliance">
+      <div class="pane-header">
+        <div>
+          <h2>Companies House Official Filings & Corporate Records</h2>
+          <small>Official statutory deadlines for CALI MEDIA LTD</small>
+        </div>
+      </div>
+
+      <div class="compliance-grid">
+        <div class="compliance-card">
+          <div class="comp-icon">🏢</div>
+          <div class="comp-details">
+            <span class="comp-label">COMPANY NAME</span>
+            <strong class="comp-val">CALI MEDIA LTD</strong>
+            <small>Incorporated under Companies Act 2006</small>
+          </div>
+        </div>
+
+        <div class="compliance-card">
+          <div class="comp-icon">🔢</div>
+          <div class="comp-details">
+            <span class="comp-label">COMPANY NUMBER</span>
+            <strong class="comp-val">17373615</strong>
+            <small>Registered in England & Wales</small>
+          </div>
+        </div>
+
+        <div class="compliance-card">
+          <div class="comp-icon">📅</div>
+          <div class="comp-details">
+            <span class="comp-label">FIRST ACCOUNTS DUE</span>
+            <strong class="comp-val" style="color: var(--teal);">31 July 2027</strong>
+            <small>Covers period 31 Jul 2026 to 31 Jul 2027</small>
+          </div>
+        </div>
+
+        <div class="compliance-card">
+          <div class="comp-icon">📝</div>
+          <div class="comp-details">
+            <span class="comp-label">CONFIRMATION STATEMENT</span>
+            <strong class="comp-val" style="color: var(--blue);">14 August 2027</strong>
+            <small>Annual verification of directors & PSC</small>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 16px;">
+        <h3 style="font-size: 14px; margin-bottom: 8px;">🏛️ UK Corporation Tax Rules & Guidelines</h3>
+        <p style="font-size: 12px; color: var(--text-muted); line-height: 1.6;">
+          • UK Small Business Rate: <strong>19%</strong> for profits under £50,000.<br>
+          • Allowable Business Deductions: Domain registration, server electricity/power, cloud backups, software tools, client travel, and home office costs.<br>
+          • Our ledger automatically accrues the recommended <strong>19% Corporation Tax reserve</strong> on all net income so you never face a tax surprise.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL: ADD EXPENSE -->
+  <div class="modal-backdrop" id="modal-expense" style="display: none;">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>+ Add Operating Expense</h3>
+        <button class="modal-close" onclick="closeModal('modal-expense')">✕</button>
+      </div>
+      <form onsubmit="handleCreateExpense(event)">
+        <div class="form-group">
+          <label>Category</label>
+          <select id="exp-category" required>
+            <option value="Domains">Domains & DNS</option>
+            <option value="Hardware & Power">Hardware & Power</option>
+            <option value="Backups">Backups & Storage</option>
+            <option value="AI Inference">AI Inference & APIs</option>
+            <option value="Software">Software & Subscriptions</option>
+            <option value="Marketing">Marketing & Advertising</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" id="exp-desc" placeholder="e.g. Domain renewal for call-on.media" required>
+        </div>
+        <div class="form-group">
+          <label>Vendor / Supplier</label>
+          <input type="text" id="exp-vendor" placeholder="e.g. Cloudflare Registrar" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Amount (£)</label>
+            <input type="number" id="exp-amount" step="0.01" placeholder="15.00" required>
+          </div>
+          <div class="form-group">
+            <label>Recurrence</label>
+            <select id="exp-recurrence">
+              <option value="Monthly">Monthly</option>
+              <option value="Annual">Annual</option>
+              <option value="One-Off">One-Off</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modal-expense')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Expense</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: CREATE INVOICE -->
+  <div class="modal-backdrop" id="modal-invoice" style="display: none;">
+    <div class="modal-box modal-lg">
+      <div class="modal-header">
+        <h3>+ Create Client Invoice / Quote</h3>
+        <button class="modal-close" onclick="closeModal('modal-invoice')">✕</button>
+      </div>
+      <form onsubmit="handleCreateInvoice(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Client Name</label>
+            <input type="text" id="inv-client-name" placeholder="John Smith" required>
+          </div>
+          <div class="form-group">
+            <label>Client Company (Optional)</label>
+            <input type="text" id="inv-client-company" placeholder="Acme Decorating Ltd">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Client Email</label>
+            <input type="email" id="inv-client-email" placeholder="john@acme.co.uk">
+          </div>
+          <div class="form-group">
+            <label>Payment Due Date</label>
+            <input type="date" id="inv-due-date" required>
+          </div>
+        </div>
+
+        <div class="invoice-items-section">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <label style="font-weight: 700;">Line Items</label>
+            <button type="button" class="btn btn-secondary" style="padding: 2px 8px; font-size: 11px;" onclick="addInvoiceItemRow()">+ Add Item</button>
+          </div>
+          <div id="invoice-items-rows">
+            <!-- Row 1 -->
+            <div class="inv-item-row">
+              <input type="text" class="item-desc" placeholder="Service / Item Description (e.g. Website Audit & SEO Optimization)" required>
+              <input type="number" class="item-qty" placeholder="Qty" value="1" min="1" style="width: 60px;" required>
+              <input type="number" class="item-price" placeholder="Price (£)" step="0.01" value="150.00" style="width: 100px;" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 10px;">
+          <label>Payment Instructions / Notes</label>
+          <input type="text" id="inv-notes" value="Thank you for partnering with Cali Media Ltd. Direct bank transfer on receipt.">
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="closeModal('modal-invoice')">Cancel</button>
+          <button type="submit" class="btn btn-primary">Generate Official Invoice 🚀</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+

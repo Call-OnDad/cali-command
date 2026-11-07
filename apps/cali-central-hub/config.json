@@ -1,0 +1,153 @@
+{
+  "server": {
+    "host": "0.0.0.0",
+    "port": 8800
+  },
+  "modules": [
+    {
+      "id": "website_creator",
+      "name": "Website Creator & Page Builder",
+      "department": "Web Design & Deployment",
+      "lead": "Agent Scribe (Gen 2)",
+      "port": 8789,
+      "url": "http://127.0.0.1:8789",
+      "launcher": "D:/The Cali Project/apps/cali-website-creator/Launch-Website-Creator.cmd",
+      "icon": "\ud83c\udf10",
+      "color": "#14b8a6",
+      "description": "Rapid semantic web scaffolding, responsive live previews, and CT500 Caddy deployments."
+    },
+    {
+      "id": "video_studio",
+      "name": "Video & Media Studio",
+      "department": "Video Production",
+      "lead": "Director Antony / Cali",
+      "port": 8790,
+      "url": "http://127.0.0.1:8790",
+      "launcher": "D:/The Cali Project/apps/cali-video-studio/Launch-Studio.cmd",
+      "icon": "\ud83c\udfac",
+      "color": "#14b8a6",
+      "description": "Native mascot video engine, Piper TTS, Colab GPU bridge, canonical 7-voice vault."
+    },
+    {
+      "id": "seo_radar",
+      "name": "SEO & Search Radar",
+      "department": "SEO Strategy",
+      "lead": "Search Radar",
+      "port": 8791,
+      "url": "http://127.0.0.1:8791",
+      "launcher": "D:/The Cali Project/apps/cali-seo-radar/Launch-SEO-Radar.cmd",
+      "icon": "\ud83d\udd0d",
+      "color": "#8b5cf6",
+      "description": "Multi-domain SERP tracker, CT120 SerpBear client, on-page technical crawler, CSV export."
+    },
+    {
+      "id": "social_hub",
+      "name": "Social Media Hub",
+      "department": "Omnichannel Publishing",
+      "lead": "Agent Echo (Gen 2)",
+      "port": 8793,
+      "url": "http://127.0.0.1:8793",
+      "launcher": "D:/The Cali Project/apps/cali-social-hub/Launch-Social-Hub.cmd",
+      "icon": "\ud83d\udcf1",
+      "color": "#ec4899",
+      "description": "9 social platforms (TikTok, YouTube, Meta, LinkedIn), content queue, Video Studio bridge."
+    },
+    {
+      "id": "community_sites",
+      "name": "Community Sites & Shop",
+      "department": "Community & E-Commerce",
+      "lead": "Agent Haven (Gen 2)",
+      "port": 8795,
+      "url": "http://127.0.0.1:8795",
+      "launcher": "D:/The Cali Project/apps/cali-community-sites/Launch-Community-Sites.cmd",
+      "icon": "\ud83c\udf10",
+      "color": "#3b82f6",
+      "description": "call-on.dad, call-on.mom, and call-on.shop merchandise catalog sync."
+    },
+    {
+      "id": "health_checker",
+      "name": "Website Health & Review",
+      "department": "Review Centre & Overwatch",
+      "lead": "Agent Vigil (Gen 2)",
+      "port": 8796,
+      "url": "http://127.0.0.1:8796",
+      "launcher": "D:/The Cali Project/apps/cali-health-checker/Launch-Health-Checker.cmd",
+      "icon": "\ud83c\udfe5",
+      "color": "#10b981",
+      "description": "Endpoint uptime, SSL certificates, PHP/JS code audit findings, disposition review."
+    },
+    {
+      "id": "security_radar",
+      "name": "Security & Pentest Radar",
+      "department": "Security & Defense",
+      "lead": "Agent Aegis (Gen 2)",
+      "port": 8797,
+      "url": "http://127.0.0.1:8797",
+      "launcher": "D:/The Cali Project/apps/cali-security-radar/Launch-Security-Radar.cmd",
+      "icon": "\ud83d\udee1\ufe0f",
+      "color": "#ef4444",
+      "description": "Active vulnerability scanning, credential leak detection, CrowdSec blocklist monitor."
+    },
+    {
+      "id": "docs_reports",
+      "name": "Docs, Reports & Knowledge",
+      "department": "Legal & Operations",
+      "lead": "Agent Lex (Gen 2)",
+      "port": 8798,
+      "url": "http://127.0.0.1:8798",
+      "launcher": "D:/The Cali Project/apps/cali-docs-reports/Launch-Docs-Reports.cmd",
+      "icon": "\ud83d\udcc4",
+      "color": "#f59e0b",
+      "description": "OnlyOffice live document editor (office.call-on.media), audit archives, legal vault."
+    },
+    {
+      "id": "finance_ledger",
+      "name": "Commercial & Finance Ledger",
+      "department": "Finance & Operations",
+      "lead": "Director Antony / Cali",
+      "port": 8799,
+      "url": "http://127.0.0.1:8799",
+      "launcher": "D:/The Cali Project/apps/cali-finance-ledger/Launch-Finance-Ledger.cmd",
+      "icon": "\ud83d\udcb7",
+      "color": "#10b981",
+      "description": "Gross revenue, Printful shop product profit margins, monthly overheads, and official client invoicing."
+    },
+    {
+      "id": "dev_workbench",
+      "name": "Dev & Code Release Workbench",
+      "department": "Engineering & DevOps",
+      "lead": "Director Antony / Cali",
+      "port": 8792,
+      "url": "http://127.0.0.1:8792",
+      "launcher": "D:/The Cali Project/apps/cali-dev-workbench/Launch-Dev-Workbench.cmd",
+      "icon": "\u26a1",
+      "color": "#38bdf8",
+      "description": "Git working tree diffs, pre-commit secret leak shield, hotfix patch approval queue."
+    },
+    {
+      "id": "automations_runner",
+      "name": "Daily Briefing & Automations",
+      "department": "Executive Office",
+      "lead": "Chief of Staff Cali",
+      "port": 8794,
+      "url": "http://127.0.0.1:8794",
+      "launcher": "D:/The Cali Project/apps/cali-automations-runner/Launch-Automations-Runner.cmd",
+      "icon": "\u2600\ufe0f",
+      "color": "#f59e0b",
+      "description": "Autonomous executive morning briefing, cross-suite telemetry aggregation, scheduled task runner."
+    }
+  ],
+  "monitored_domains": [
+    "cali-media.ltd",
+    "call-on.media",
+    "call-on.dad",
+    "call-on.mom",
+    "call-on.shop"
+  ],
+  "llm": {
+    "provider": "litellm",
+    "base_url": "http://192.168.0.60:4000/v1",
+    "model": "fb-groq-70b",
+    "api_key": ""
+  }
+}

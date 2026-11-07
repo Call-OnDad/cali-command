@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cali Documents, Reports & Knowledge Centre</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top-header">
+    <div class="brand">
+      <span>📄</span> CALI <span>DOCS & KNOWLEDGE CENTRE</span>
+      <span class="badge">AGENT LEX (GEN 2) · PORT 8798</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <a href="/" onclick="if(window.parent && window.parent.closeAppViewer){window.parent.closeAppViewer();return false;}" class="btn" style="text-decoration: none; color: var(--teal); font-size: 11px; padding: 6px 12px; border-color: var(--border);">
+        &larr; Central Hub (:8800)
+      </a>
+      <a href="https://office.call-on.media" target="_blank" class="btn btn-primary">📝 Open OnlyOffice Workspace</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="stats-row" id="stats-row"></section>
+
+    <div class="two-col">
+      <div class="card">
+        <h3>🏛️ Corporate Compliance & Companies House</h3>
+        <div id="filings-box" class="filings-box"></div>
+      </div>
+
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0;">📚 Knowledge Base, Lessons Learned & SOPs</h3>
+          <input type="text" id="doc-search" placeholder="Search lessons, audits, SOPs..." style="background: rgba(255,255,255,0.06); border: 1px solid var(--border); color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 11px; width: 220px;">
+        </div>
+        <div id="docs-list" class="docs-list"></div>
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
+

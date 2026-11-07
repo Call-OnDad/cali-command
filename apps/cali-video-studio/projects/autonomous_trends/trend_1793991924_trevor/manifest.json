@@ -1,0 +1,56 @@
+{
+  "project_id": "trend_1793991924_trevor",
+  "created_at": "2026-11-06 19:05:24",
+  "status": "QUEUED_FOR_RENDER",
+  "topic": "Boiler Pressure Dropping in Sub-Zero Weather",
+  "character": {
+    "id": "trevor",
+    "name": "Trevor",
+    "role": "Tradesman & Practical Maintenance",
+    "keywords": [
+      "boiler",
+      "radiator",
+      "plumbing",
+      "pipe",
+      "freeze",
+      "frost",
+      "heating",
+      "leak",
+      "diy",
+      "tools",
+      "mechanic",
+      "insulation",
+      "van",
+      "trades"
+    ],
+    "voice": "northern",
+    "flow_prompt": "Trevor the northern tradesman in his workshop wearing navy work jacket and hi-vis trim, holding a wrench, speaking directly to camera with friendly, practical delivery. Photorealistic 3D render, cinematic warm workshop lighting, tool wall in background. Aspect ratio 9:16 vertical short.",
+    "brand_affinity": "call-on.dad",
+    "avatar": "locked_images/portraits/trevor.webp"
+  },
+  "script": {
+    "topic": "Boiler Pressure Dropping in Sub-Zero Weather",
+    "character_id": "trevor",
+    "character_name": "Trevor",
+    "role": "Tradesman & Practical Maintenance",
+    "hook": "Right lads, Trevor here. If your boiler pressure dropping in sub-zero weather is playing up today, stop and listen before you call a rogue tradesman.",
+    "body": "First thing: check the pressure gauge right under the unit. If it's below one bar, you don't need a new pump\u2014you just need to open the filling loop until it hits 1.5. Nine times out of ten that resets the lockout completely.",
+    "cta": "Save this video for when the cold hits, and find our full free maintenance guides over on call-on.dad. Proper jobs, zero nonsense.",
+    "full_script": "Right lads, Trevor here. If your boiler pressure dropping in sub-zero weather is playing up today, stop and listen before you call a rogue tradesman. First thing: check the pressure gauge right under the unit. If it's below one bar, you don't need a new pump\u2014you just need to open the filling loop until it hits 1.5. Nine times out of ten that resets the lockout completely. Save this video for when the cold hits, and find our full free maintenance guides over on call-on.dad. Proper jobs, zero nonsense.",
+    "word_count": 89,
+    "estimated_duration_sec": 38,
+    "brand_target": "call-on.dad",
+    "flow_prompt": "Trevor the northern tradesman in his workshop wearing navy work jacket and hi-vis trim, holding a wrench, speaking directly to camera with friendly, practical delivery. Photorealistic 3D render, cinematic warm workshop lighting, tool wall in background. Aspect ratio 9:16 vertical short. Spoken line: \"Right lads, Trevor here. If your boiler pressure dropping in sub-zero weather is playing up today, stop and listen before you call a rogue tradesman.\" Measured pace, natural lip-sync, crisp audio."
+  },
+  "flow_dispatch": {
+    "model": "Veo 3.1 - Lite",
+    "aspect_ratio": "9:16",
+    "character_voice": true,
+    "prompt": "Trevor the northern tradesman in his workshop wearing navy work jacket and hi-vis trim, holding a wrench, speaking directly to camera with friendly, practical delivery. Photorealistic 3D render, cinematic warm workshop lighting, tool wall in background. Aspect ratio 9:16 vertical short. Spoken line: \"Right lads, Trevor here. If your boiler pressure dropping in sub-zero weather is playing up today, stop and listen before you call a rogue tradesman.\" Measured pace, natural lip-sync, crisp audio.",
+    "target_credits": 10
+  },
+  "local_fallback": {
+    "voice_model": "northern",
+    "output_video": "exports/trend_1793991924_trevor.mp4"
+  }
+}
